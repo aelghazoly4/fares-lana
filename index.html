@@ -318,11 +318,32 @@
             @media screen and (max-width: 639px) {
                 #wg-scroll-hint {
                     bottom: 45px;
+                    gap: 7px;
                 }
             }
             @media screen and (max-width: 479px) {
                 #wg-scroll-hint {
                     bottom: 60px;
+                    gap: 6px;
+                }
+                #wg-scroll-hint .wg-scroll-word {
+                    padding: 6px 16px 7px;
+                    gap: 1px;
+                }
+                #wg-scroll-hint .wg-scroll-word .wg-ar {
+                    font-size: 14px;
+                }
+                #wg-scroll-hint .wg-scroll-word .wg-en {
+                    font-size: 10px;
+                    letter-spacing: 2px;
+                }
+                #wg-scroll-hint .wg-scroll-circle {
+                    width: 34px;
+                    height: 34px;
+                }
+                #wg-scroll-hint .wg-scroll-circle svg {
+                    width: 15px;
+                    height: 15px;
                 }
             }
             #wg-scroll-hint.wg-show {
@@ -6230,15 +6251,15 @@
             </div>
             <!-- ===== /Venue Photo + Location ===== -->
 
-            <!-- ===== RSVP / تأكيد الحضور (custom, connected to /api/rsvp) ===== -->
+            <!-- ===== RSVP (custom, connected to /api/rsvp) ===== -->
             <div id="rsvp-section" class="rsvp-section">
                 <style>
                     #rsvp-section {
                         position: relative;
                         background-color: #f4e0c8;
-                        padding: 80px 20px 100px;
+                        padding: 72px 20px 88px;
                         text-align: center;
-                        direction: rtl;
+                        direction: ltr;
                         overflow: hidden;
                     }
                     #rsvp-section::before, #rsvp-section::after {
@@ -6271,104 +6292,98 @@
                     .rsvp-eyebrow .word {
                         font-family: 'EB Garamond', serif;
                         letter-spacing: 3px;
-                        font-size: 15px;
+                        font-size: 14px;
                         color: #af9b6a;
                     }
                     .rsvp-title {
                         font-family: 'Amiri', serif;
                         font-weight: 700;
-                        font-size: 36px;
+                        font-size: 32px;
                         line-height: 1.3;
                         color: #4a3624;
-                        margin: 16px 0 8px;
+                        margin: 14px 0 8px;
                     }
                     .rsvp-lead {
-                        font-family: 'Amiri', serif;
-                        font-size: 19px;
-                        line-height: 1.8;
+                        font-family: 'EB Garamond', serif;
+                        font-size: 17px;
+                        line-height: 1.6;
                         color: #6b5231;
-                        max-width: 420px;
-                        margin: 0 auto 34px;
+                        max-width: 380px;
+                        margin: 0 auto 30px;
                     }
 
                     .rsvp-card {
                         position: relative;
-                        max-width: 500px;
+                        max-width: 440px;
                         margin: 0 auto;
                         background: #fffaf2;
-                        border: 1px solid #ecdcb8;
-                        border-radius: 20px;
-                        padding: 34px 26px 30px;
-                        box-shadow: 0 18px 40px rgba(74,54,28,0.14);
-                        text-align: right;
-                    }
-                    .rsvp-card::before {
-                        content: "";
-                        position: absolute;
-                        inset: 7px;
-                        border: 1px solid rgba(201,173,122,0.55);
-                        border-radius: 14px;
-                        pointer-events: none;
+                        border: 1px solid rgba(190,160,108,0.4);
+                        border-radius: 16px;
+                        padding: 30px 26px;
+                        box-shadow: 0 16px 36px rgba(74,54,28,0.1);
+                        text-align: left;
                     }
 
-                    .rsvp-field { margin-bottom: 22px; position: relative; }
+                    .rsvp-field { margin-bottom: 18px; position: relative; }
                     .rsvp-label, .rsvp-legend {
                         display: block;
-                        font-family: 'Amiri', serif;
-                        font-weight: 700;
-                        font-size: 18px;
-                        color: #3f3122;
-                        margin-bottom: 9px;
+                        font-family: 'EB Garamond', serif;
+                        font-weight: 600;
+                        letter-spacing: 0.4px;
+                        font-size: 13px;
+                        text-transform: uppercase;
+                        color: #8a6f45;
+                        margin-bottom: 8px;
                         padding: 0;
                     }
-                    .rsvp-label small { font-weight: 400; color: #8a6f45; font-size: 15px; margin-right: 6px; }
+                    .rsvp-label small { font-weight: 400; text-transform: none; color: #b9a77f; font-size: 12px; margin-left: 5px; letter-spacing: 0; }
                     .rsvp-input, .rsvp-textarea {
                         width: 100%;
-                        font-family: 'Amiri', serif;
-                        font-size: 19px;
+                        font-family: 'EB Garamond', serif;
+                        font-size: 17px;
                         color: #3f3122;
                         background: #fff;
-                        border: 1.5px solid #e3d2ae;
-                        border-radius: 12px;
-                        padding: 13px 16px;
-                        direction: rtl;
-                        text-align: right;
+                        border: 1px solid #e3d2ae;
+                        border-radius: 10px;
+                        padding: 12px 14px;
+                        direction: ltr;
+                        text-align: left;
                         outline: none;
                         transition: border-color 0.2s ease, box-shadow 0.2s ease;
                         -webkit-appearance: none;
                         appearance: none;
                     }
-                    .rsvp-textarea { min-height: 112px; resize: vertical; line-height: 1.7; }
-                    .rsvp-input::placeholder, .rsvp-textarea::placeholder { color: #b9a77f; }
+                    .rsvp-textarea { min-height: 96px; resize: vertical; line-height: 1.6; }
+                    .rsvp-input::placeholder, .rsvp-textarea::placeholder { color: #c3b38c; }
                     .rsvp-input:focus, .rsvp-textarea:focus {
                         border-color: #b08f52;
-                        box-shadow: 0 0 0 4px rgba(201,173,122,0.25);
+                        box-shadow: 0 0 0 3px rgba(201,173,122,0.2);
                     }
                     .rsvp-field.rsvp-invalid .rsvp-input,
                     .rsvp-field.rsvp-invalid .rsvp-choices { border-color: #b4574a; }
                     .rsvp-field.rsvp-invalid .rsvp-input { box-shadow: 0 0 0 3px rgba(180,87,74,0.14); }
                     .rsvp-hint {
                         display: none;
-                        font-family: 'Amiri', serif;
-                        font-size: 16px;
+                        font-family: 'EB Garamond', serif;
+                        font-size: 13px;
                         color: #a24a3d;
-                        margin-top: 7px;
+                        margin-top: 6px;
                     }
                     .rsvp-field.rsvp-invalid .rsvp-hint { display: block; }
                     .rsvp-count {
                         position: absolute;
-                        left: 12px;
+                        right: 12px;
                         bottom: 9px;
                         font-family: 'EB Garamond', serif;
-                        font-size: 13px;
-                        color: #b9a77f;
+                        font-size: 12px;
+                        color: #c3b38c;
                         pointer-events: none;
                         direction: ltr;
                         unicode-bidi: isolate;
                     }
 
-                    fieldset.rsvp-fieldset { border: 0; margin: 0 0 22px; padding: 0; min-width: 0; }
-                    .rsvp-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-radius: 14px; }
+                    fieldset.rsvp-fieldset { border: 0; margin: 0 0 18px; padding: 0; min-width: 0; }
+                    .rsvp-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-radius: 10px; }
                     .rsvp-choice { position: relative; display: flex; cursor: pointer; }
                     .rsvp-choice input {
                         position: absolute;
@@ -6382,47 +6397,45 @@
                     .rsvp-choice .box {
                         flex: 1;
                         display: flex;
-                        flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        gap: 4px;
-                        min-height: 92px;
-                        padding: 14px 10px;
+                        gap: 8px;
+                        min-height: 50px;
+                        padding: 10px 10px;
                         text-align: center;
                         background: #fff;
-                        border: 1.5px solid #e3d2ae;
-                        border-radius: 14px;
-                        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+                        border: 1px solid #e3d2ae;
+                        border-radius: 10px;
+                        transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
                     }
                     .rsvp-choice .ico {
-                        width: 26px; height: 26px;
-                        color: #b9a77f;
-                        transition: color 0.25s ease;
+                        width: 18px; height: 18px;
+                        flex: none;
+                        color: #c3b38c;
+                        transition: color 0.2s ease;
                     }
-                    .rsvp-choice .t { font-family: 'Amiri', serif; font-weight: 700; font-size: 19px; line-height: 1.3; color: #3f3122; }
-                    .rsvp-choice .s { font-family: 'Amiri', serif; font-size: 15px; color: #8a6f45; }
+                    .rsvp-choice .t { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 14.5px; line-height: 1.3; color: #3f3122; }
                     .rsvp-choice input:checked + .box {
                         background: #f8ecd2;
                         border-color: #b08f52;
-                        box-shadow: 0 8px 18px rgba(74,54,28,0.12);
-                        transform: translateY(-2px);
+                        box-shadow: 0 4px 12px rgba(74,54,28,0.1);
                     }
                     .rsvp-choice input:checked + .box .ico { color: #6b5231; }
-                    .rsvp-choice input:focus-visible + .box { outline: 3px solid rgba(176,143,82,0.6); outline-offset: 2px; }
+                    .rsvp-choice input:focus-visible + .box { outline: 2px solid rgba(176,143,82,0.6); outline-offset: 2px; }
 
                     .rsvp-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
 
                     .rsvp-error {
                         display: none;
-                        font-family: 'Amiri', serif;
-                        font-size: 17px;
-                        line-height: 1.6;
+                        font-family: 'EB Garamond', serif;
+                        font-size: 14px;
+                        line-height: 1.5;
                         color: #8f3a2e;
                         background: #fbeae6;
                         border: 1px solid #efc4bb;
-                        border-radius: 12px;
-                        padding: 11px 14px;
-                        margin-bottom: 16px;
+                        border-radius: 10px;
+                        padding: 10px 14px;
+                        margin-bottom: 14px;
                     }
                     .rsvp-error.rsvp-show { display: block; }
 
@@ -6432,16 +6445,19 @@
                         align-items: center;
                         justify-content: center;
                         gap: 10px;
-                        font-family: 'Amiri', serif;
-                        font-weight: 700;
-                        font-size: 21px;
+                        font-family: 'EB Garamond', serif;
+                        font-weight: 600;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        font-size: 14px;
                         color: #fffaf2;
                         background: #4a3624;
                         border: 0;
-                        border-radius: 14px;
-                        padding: 15px 20px;
+                        border-radius: 10px;
+                        padding: 14px 20px;
+                        margin-top: 4px;
                         cursor: pointer;
-                        box-shadow: 0 10px 22px rgba(74,54,36,0.28);
+                        box-shadow: 0 10px 22px rgba(74,54,36,0.22);
                         transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
                         -webkit-tap-highlight-color: transparent;
                     }
@@ -6451,27 +6467,27 @@
                     .rsvp-submit[disabled] { opacity: 0.75; cursor: progress; }
                     .rsvp-spin {
                         display: none;
-                        width: 20px; height: 20px;
+                        width: 16px; height: 16px;
                         border-radius: 50%;
-                        border: 2.5px solid rgba(255,250,242,0.35);
+                        border: 2px solid rgba(255,250,242,0.35);
                         border-top-color: #fffaf2;
                         animation: rsvpSpin 0.8s linear infinite;
                     }
                     .rsvp-submit.rsvp-busy .rsvp-spin { display: inline-block; }
                     @keyframes rsvpSpin { to { transform: rotate(360deg); } }
 
-                    .rsvp-done { text-align: center; padding: 10px 4px 4px; }
+                    .rsvp-done { text-align: center; padding: 6px 4px 4px; }
                     .rsvp-done[hidden], #rsvp-form[hidden] { display: none; }
                     .rsvp-seal {
-                        width: 78px; height: 78px;
-                        margin: 0 auto 18px;
+                        width: 60px; height: 60px;
+                        margin: 0 auto 16px;
                         border-radius: 50%;
                         background: radial-gradient(circle at 34% 30%, #fffdf8, #f8ecd2 80%);
-                        border: 1.5px solid #c9ad7a;
-                        box-shadow: 0 10px 22px rgba(74,54,28,0.16);
+                        border: 1px solid #c9ad7a;
+                        box-shadow: 0 8px 18px rgba(74,54,28,0.14);
                         display: flex; align-items: center; justify-content: center;
                     }
-                    .rsvp-seal svg { width: 38px; height: 38px; }
+                    .rsvp-seal svg { width: 30px; height: 30px; }
                     .rsvp-seal path { stroke-dasharray: 40; stroke-dashoffset: 0; }
                     .rsvp-done.rsvp-fresh .rsvp-seal { animation: rsvpPop 0.6s cubic-bezier(.22,1,.36,1) both; }
                     .rsvp-done.rsvp-fresh .rsvp-seal path { stroke-dashoffset: 40; animation: rsvpDraw 0.7s ease 0.35s forwards; }
@@ -6480,34 +6496,33 @@
                     .rsvp-done-title {
                         font-family: 'Amiri', serif;
                         font-weight: 700;
-                        font-size: 28px;
+                        font-size: 23px;
                         color: #4a3624;
-                        margin: 0 0 10px;
-                        line-height: 1.4;
+                        margin: 0 0 8px;
+                        line-height: 1.35;
                     }
                     .rsvp-done-text {
-                        font-family: 'Amiri', serif;
-                        font-size: 20px;
-                        line-height: 1.9;
-                        color: #5b4630;
+                        font-family: 'EB Garamond', serif;
+                        font-size: 16px;
+                        line-height: 1.6;
+                        color: #6b5231;
                         margin: 0 auto;
-                        max-width: 380px;
+                        max-width: 320px;
                     }
-                    .rsvp-done-flourish { color: #c9ad7a; font-size: 20px; margin: 16px 0 12px; }
+                    .rsvp-done-flourish { color: #c9ad7a; font-size: 18px; margin: 14px 0 10px; }
                     .rsvp-done-note {
-                        font-family: 'Amiri', serif;
-                        font-size: 15.5px;
-                        color: #8a6f45;
+                        font-family: 'EB Garamond', serif;
+                        font-size: 12.5px;
+                        color: #b9a77f;
                         margin: 0;
                     }
 
                     @media screen and (max-width: 479px) {
-                        #rsvp-section { padding: 64px 14px 84px; }
-                        .rsvp-title { font-size: 29px; }
-                        .rsvp-lead { font-size: 17.5px; }
-                        .rsvp-card { padding: 28px 18px 24px; }
-                        .rsvp-choice .t { font-size: 17.5px; }
-                        .rsvp-choice .box { min-height: 88px; }
+                        #rsvp-section { padding: 56px 14px 72px; }
+                        .rsvp-title { font-size: 27px; }
+                        .rsvp-lead { font-size: 15.5px; }
+                        .rsvp-card { padding: 24px 18px; }
+                        .rsvp-choice .t { font-size: 13.5px; }
                     }
                     @media (prefers-reduced-motion: reduce) {
                         .rsvp-head, .rsvp-choice .box, .rsvp-submit { transition: none; }
@@ -6522,44 +6537,42 @@
                         <span class="word">RSVP</span>
                         <span class="line"></span>
                     </div>
-                    <div class="rsvp-title">تأكيد الحضور</div>
-                    <p class="rsvp-lead">يسعدنا معرفة ما إذا كنت ستشاركنا فرحتنا، ويسعدنا أيضًا أن تترك لنا رسالة.</p>
+                    <div class="rsvp-title">Will You Join Us?</div>
+                    <p class="rsvp-lead">We'd love to celebrate with you — please let us know if you can make it.</p>
                 </div>
 
                 <div class="rsvp-card" id="rsvp-card">
                     <form id="rsvp-form" novalidate autocomplete="on">
                         <div class="rsvp-field" data-field="name">
-                            <label class="rsvp-label" for="rsvp-name">الاسم</label>
-                            <input class="rsvp-input" id="rsvp-name" name="name" type="text" maxlength="80" autocomplete="name" placeholder="اكتب اسمك" enterkeyhint="next">
-                            <div class="rsvp-hint">من فضلك اكتب اسمك.</div>
+                            <label class="rsvp-label" for="rsvp-name">Your Name</label>
+                            <input class="rsvp-input" id="rsvp-name" name="name" type="text" maxlength="80" autocomplete="name" placeholder="Full name" enterkeyhint="next">
+                            <div class="rsvp-hint">Please enter your name.</div>
                         </div>
 
                         <fieldset class="rsvp-fieldset rsvp-field" data-field="attending">
-                            <legend class="rsvp-legend">هل ستحضر الحفل؟</legend>
+                            <legend class="rsvp-legend">Will You Attend?</legend>
                             <div class="rsvp-choices">
                                 <label class="rsvp-choice">
                                     <input type="radio" name="attending" value="yes">
                                     <span class="box">
                                         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg>
-                                        <span class="t">نعم، سأحضر</span>
-                                        <span class="s">بإذن الله</span>
+                                        <span class="t">Joyfully Accept</span>
                                     </span>
                                 </label>
                                 <label class="rsvp-choice">
                                     <input type="radio" name="attending" value="no">
                                     <span class="box">
                                         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
-                                        <span class="t">لن أستطيع الحضور</span>
-                                        <span class="s">مع خالص الشكر</span>
+                                        <span class="t">Regretfully Decline</span>
                                     </span>
                                 </label>
                             </div>
-                            <div class="rsvp-hint">اختر أحد الخيارين من فضلك.</div>
+                            <div class="rsvp-hint">Please choose one option.</div>
                         </fieldset>
 
                         <div class="rsvp-field" data-field="message">
-                            <label class="rsvp-label" for="rsvp-message">رسالة للعروسين <small>(اختياري)</small></label>
-                            <textarea class="rsvp-textarea" id="rsvp-message" name="message" maxlength="500" placeholder="اكتب تهنئتك أو رسالتك هنا"></textarea>
+                            <label class="rsvp-label" for="rsvp-message">Message <small>(optional)</small></label>
+                            <textarea class="rsvp-textarea" id="rsvp-message" name="message" maxlength="500" placeholder="Leave a note for the couple"></textarea>
                             <span class="rsvp-count" id="rsvp-count" aria-hidden="true">0 / 500</span>
                         </div>
 
@@ -6571,7 +6584,7 @@
 
                         <button type="submit" class="rsvp-submit" id="rsvp-submit">
                             <span class="rsvp-spin" aria-hidden="true"></span>
-                            <span class="rsvp-submit-label">إرسال الرد</span>
+                            <span class="rsvp-submit-label">Send RSVP</span>
                         </button>
                     </form>
 
@@ -6582,7 +6595,7 @@
                         <h3 class="rsvp-done-title" id="rsvp-done-title"></h3>
                         <p class="rsvp-done-text" id="rsvp-done-text"></p>
                         <div class="rsvp-done-flourish">❦</div>
-                        <p class="rsvp-done-note">تم تسجيل ردّك، ولا يمكن إرسال رد آخر من هذا الجهاز.</p>
+                        <p class="rsvp-done-note">Your response has been recorded and can't be resubmitted from this device.</p>
                     </div>
                 </div>
 
@@ -6629,11 +6642,11 @@
                             var title = document.getElementById('rsvp-done-title');
                             var text = document.getElementById('rsvp-done-text');
                             if (yes) {
-                                title.textContent = first ? ('شكرًا لك يا ' + first + '، تم تأكيد حضورك') : 'شكرًا لك، تم تأكيد حضورك';
-                                text.textContent = 'وصلنا ردّك بنجاح، ويسعد فارس ولانا بمشاركتك فرحتهما. نتمنى لك أجمل الأوقات، ونراك في ليلة العمر بإذن الله.';
+                                title.textContent = first ? ('Thank you, ' + first + '!') : 'Thank you!';
+                                text.textContent = "Your RSVP is confirmed. We can't wait to celebrate with you!";
                             } else {
-                                title.textContent = first ? ('شكرًا لك يا ' + first + '، وصلنا ردّك') : 'شكرًا لك، وصلنا ردّك';
-                                text.textContent = 'نقدّر اهتمامك ونتمنى لك دوام السعادة والتوفيق. سنفتقد وجودك، وتبقى دعواتك لنا أجمل هدية.';
+                                title.textContent = first ? ('Thank you, ' + first + '.') : 'Thank you.';
+                                text.textContent = "We appreciate your response. You'll be missed on our special day.";
                             }
                             form.hidden = true;
                             done.hidden = false;
@@ -6696,13 +6709,13 @@
                             sending = true;
                             btn.disabled = true;
                             btn.classList.add('rsvp-busy');
-                            btn.querySelector('.rsvp-submit-label').textContent = 'جارٍ الإرسال...';
+                            btn.querySelector('.rsvp-submit-label').textContent = 'Sending...';
 
                             var finish = function() {
                                 sending = false;
                                 btn.disabled = false;
                                 btn.classList.remove('rsvp-busy');
-                                btn.querySelector('.rsvp-submit-label').textContent = 'إرسال الرد';
+                                btn.querySelector('.rsvp-submit-label').textContent = 'Send RSVP';
                             };
 
                             fetch(API, {
@@ -6724,14 +6737,14 @@
                                     showError(res.data.message);
                                     finish();
                                 } else if (res.status === 429) {
-                                    showError('محاولات كثيرة في وقت قصير، من فضلك انتظر قليلًا ثم حاول مرة أخرى.');
+                                    showError('Too many attempts. Please wait a moment and try again.');
                                     finish();
                                 } else {
-                                    showError('تعذّر إرسال ردّك الآن. من فضلك حاول مرة أخرى بعد قليل.');
+                                    showError("Couldn't send your RSVP right now. Please try again shortly.");
                                     finish();
                                 }
                             }).catch(function() {
-                                showError('تعذّر الاتصال بالإنترنت. تأكد من الاتصال ثم أعد المحاولة.');
+                                showError('Connection error. Please check your internet and try again.');
                                 finish();
                             });
                         });
