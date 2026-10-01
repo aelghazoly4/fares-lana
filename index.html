@@ -303,6 +303,8 @@
                 left: 50%;
                 bottom: 22px;
                 transform: translateX(-50%);
+                width: max-content;
+                max-width: calc(100vw - 32px);
                 z-index: 998000;
                 display: flex;
                 flex-direction: column;
@@ -311,6 +313,7 @@
                 opacity: 0;
                 pointer-events: none;
                 transition: opacity 0.8s ease;
+                -webkit-tap-highlight-color: transparent;
             }
             @media screen and (max-width: 639px) {
                 #wg-scroll-hint {
@@ -328,44 +331,67 @@
                 cursor: pointer;
             }
             #wg-scroll-hint .wg-scroll-word {
-                font-family: 'EB Garamond', serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2px;
+                padding: 9px 26px 10px;
+                border-radius: 18px;
+                background: rgba(255, 250, 242, 0.92);
+                border: 1px solid #c9ad7a;
+                box-shadow: 0 8px 22px rgba(74,54,36,0.22);
+                font-family: 'Amiri', serif;
+                font-weight: 700;
+                color: #3a2a18;
+                text-align: center;
+            }
+            #wg-scroll-hint .wg-scroll-word .wg-ar {
+                direction: rtl;
+                font-size: 21px;
+                line-height: 1.25;
+            }
+            #wg-scroll-hint .wg-scroll-word .wg-en {
                 direction: ltr;
-                font-size: 13px;
+                font-size: 15px;
+                line-height: 1.2;
                 letter-spacing: 3px;
                 text-transform: uppercase;
                 color: #6b5231;
-                text-shadow: 0 1px 3px rgba(255,250,242,0.9);
+                white-space: nowrap;
             }
             #wg-scroll-hint .wg-scroll-circle {
-                width: 40px;
-                height: 40px;
+                width: 50px;
+                height: 50px;
                 border-radius: 50%;
-                background: rgba(255, 250, 242, 0.85);
-                border: 1px solid #c9ad7a;
-                box-shadow: 0 6px 16px rgba(74,54,36,0.18);
+                background: rgba(255, 250, 242, 0.95);
+                border: 1.5px solid #b08f52;
+                box-shadow: 0 8px 20px rgba(74,54,36,0.25);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 animation: wgScrollBounce 1.8s ease-in-out infinite;
             }
             #wg-scroll-hint .wg-scroll-circle svg {
-                width: 16px;
-                height: 16px;
+                width: 22px;
+                height: 22px;
                 display: block;
             }
             @keyframes wgScrollBounce {
                 0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(6px); }
+                50% { transform: translateY(7px); }
             }
             @media (prefers-reduced-motion: reduce) {
                 #wg-scroll-hint .wg-scroll-circle { animation: none; }
             }
         </style>
-        <div id="wg-scroll-hint" aria-hidden="true">
-            <span class="wg-scroll-word">Scroll Down</span>
+        <div id="wg-scroll-hint" role="button" tabindex="0" aria-label="اسحب للأسفل - Scroll Down">
+            <span class="wg-scroll-word">
+                <span class="wg-ar">اسحب للأسفل</span>
+                <span class="wg-en">Scroll Down</span>
+            </span>
             <span class="wg-scroll-circle">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 9 L12 16 L19 9" stroke="#6b5231" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 9 L12 16 L19 9" stroke="#3a2a18" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </span>
         </div>
@@ -1505,7 +1531,7 @@
                         color: #866739;
                         text-align: center;
                         z-index: 3;
-                        top: 334px;
+                        top: 293px;
                         ;left: calc(50% - 600px + 320px);
                         ;width: 560px;
                         height: auto;
@@ -1514,7 +1540,7 @@
                     #rec2443433723 .tn-elem[data-elem-id="1779566247730000001"] .tn-atom {
                         vertical-align: middle;
                         color: #866739;
-                        font-size: 59px;
+                        font-size: 76px;
                         font-family: 'NewFonts',Arial,sans-serif;
                         line-height: 0.42;
                         font-weight: 300;
@@ -1572,7 +1598,7 @@
                     @media screen and (max-width: 479px) {
                         #rec2443433723 .tn-elem[data-elem-id="1779566247730000001"] {
                             display:table;
-                            top: 329px;
+                            top: 288px;
                             ;left: calc(50% - 160px + -118px);
                             ;width: px;
                             height: auto;
@@ -1580,7 +1606,7 @@
 
                         #rec2443433723 .tn-elem[data-elem-id="1779566247730000001"] .tn-atom {
                             white-space: normal;
-                            font-size: 59px;
+                            font-size: 76px;
                             background-size: cover;
                         }
                     }
@@ -1589,7 +1615,7 @@
                         color: #866739;
                         text-align: center;
                         z-index: 3;
-                        top: 466px;
+                        top: 482px;
                         ;left: calc(50% - 600px + 320px);
                         ;width: 560px;
                         height: 37px;
@@ -1653,7 +1679,7 @@
                     @media screen and (max-width: 479px) {
                         #rec2443433723 .tn-elem[data-elem-id="1779566247730000003"] {
                             display:table;
-                            top: 464px;
+                            top: 480px;
                             ;left: calc(50% - 160px + -118px);
                             ;width: px;
                         }
@@ -1873,6 +1899,10 @@
                             height: auto;
                         }
                     }
+                
+                    #rec2443433723 .tn-elem[data-elem-id="1779566247730000001"] .tn-atom { line-height: 1; }
+                    #rec2443433723 .wg-nm { display: block; line-height: 0.95; }
+                    #rec2443433723 .wg-amp { display: block; font-size: 0.4em; line-height: 1.3; }
                 </style>
                 <div class='t396'>
                     <div class="t396__artboard" data-artboard-recid="2443433723" data-artboard-screens="320,480,640,960,1200" data-artboard-height="782" data-artboard-valign="center" data-artboard-upscale="grid">
@@ -1940,20 +1970,12 @@
                         </div>
                         <div class='t396__elem tn-elem tn-elem__24434337231779566247730000001 t-animate' data-elem-id='1779566247730000001' data-elem-type='text' data-field-top-value="334" data-field-left-value="320" data-field-height-value="100" data-field-width-value="560" data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid" data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value="px" data-field-widthunits-value="px" data-animate-style="fadeinup" data-animate-duration="2.3" data-animate-delay="3" data-animate-distance="20" data-animate-mobile="y" data-field-textfit-value="autoheight" data-field-fontsize-value="59" data-field-top-res-320-value="329" data-field-left-res-320-value="-118" data-animate-delay-res-320="3" data-field-fontsize-res-320-value="59" data-field-left-res-480-value="-38" data-field-left-res-640-value="42" data-field-left-res-960-value="202">
                             <div class='tn-atom' field='tn_text_1779566247730000001'>
-                                Faris<br/>
-                                <br/>
-                                <br/>Lana
+                                <span class="wg-nm">Faris</span><span class="wg-amp">&amp;</span><span class="wg-nm">Lana</span>
                             </div>
-                        </div>
-                        <div class='t396__elem tn-elem tn-elem__24434337231779566247730000003 t-animate' data-elem-id='1779566247730000003' data-elem-type='text' data-field-top-value="466" data-field-left-value="320" data-field-height-value="37" data-field-width-value="560" data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid" data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value="px" data-field-widthunits-value="px" data-animate-style="fadeinup" data-animate-duration="2.3" data-animate-delay="3" data-animate-distance="20" data-animate-mobile="y" data-field-textfit-value="fixedsize" data-field-fontsize-value="19" data-field-top-res-320-value="464" data-field-left-res-320-value="-118" data-animate-delay-res-320="3" data-field-left-res-480-value="-40" data-field-left-res-640-value="40" data-field-left-res-960-value="200">
-                            <div class='tn-atom' field='tn_text_1779566247730000003'>01.11.2026</div>
                         </div>
                         <!-- <div class='t396__elem tn-elem tn-elem__24434337231779626065755000001 t-animate' data-elem-id='1779626065755000001' data-elem-type='text' data-field-top-value="491" data-field-left-value="320" data-field-height-value="37" data-field-width-value="560" data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid" data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value="px" data-field-widthunits-value="px" data-animate-style="fadeinup" data-animate-duration="2.3" data-animate-delay="3" data-animate-distance="20" data-animate-mobile="y" data-field-textfit-value="fixedsize" data-field-fontsize-value="19" data-field-top-res-320-value="487" data-field-left-res-320-value="-118" data-animate-delay-res-320="3" data-field-left-res-480-value="-40" data-field-left-res-640-value="40" data-field-left-res-960-value="200">
                             <div class='tn-atom' field='tn_text_1779626065755000001'>à partir de 16h</div>
                         </div> -->
-                        <div class='t396__elem tn-elem tn-elem__24434337231779566247730000004 t-animate' data-elem-id='1779566247730000004' data-elem-type='text' data-field-top-value="368" data-field-left-value="573" data-field-height-value="31" data-field-width-value="55" data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid" data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value="px" data-field-widthunits-value="px" data-animate-style="fadeinup" data-animate-duration="2.3" data-animate-delay="3" data-animate-distance="20" data-animate-mobile="y" data-field-textfit-value="autoheight" data-field-fontsize-value="28" data-field-top-res-320-value="361" data-field-left-res-320-value="134" data-animate-delay-res-320="3" data-field-left-res-480-value="214" data-field-left-res-640-value="294" data-field-left-res-960-value="454">
-                            <div class='tn-atom' field='tn_text_1779566247730000004'>&amp;</div>
-                        </div>
                         <div class='t396__elem tn-elem tn-elem__24434337231730310670421' data-elem-id='1730310670421' data-elem-type='vector' data-field-top-value="90" data-field-left-value="93" data-field-width-value="8" data-field-axisy-value="top" data-field-axisx-value="left" data-field-container-value="grid" data-field-topunits-value="px" data-field-leftunits-value="px" data-field-heightunits-value="px" data-field-widthunits-value="px" data-field-heightmode-value="hug">
                             <div class='tn-atom tn-atom__vector'>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 254 1" fill="none" role="img" aria-label="">
@@ -3362,6 +3384,35 @@
                         .hf-headline { font-size: 36px; }
                         .hf-sub { font-size: 16px; line-height: 2.1; max-width: 90%; }
                     }
+
+                    /* framed couple photo under the headline */
+                    .hf-photo {
+                        position: relative;
+                        width: 100%;
+                        max-width: 360px;
+                        margin: 0 auto;
+                        padding: 9px;
+                        background: #fffaf2;
+                        border: 1px solid #c9ad7a;
+                        border-radius: 6px;
+                        box-shadow: 0 14px 32px rgba(74, 54, 28, 0.13);
+                        transform: translateY(22px);
+                        transition: transform 1.1s ease 0.3s;
+                    }
+                    .hf-photo img {
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                        border: 1px solid rgba(201, 173, 122, 0.5);
+                        border-radius: 2px;
+                    }
+                    #hf-section.hf-inview .hf-photo { transform: translateY(0); }
+                    @media screen and (max-width: 640px) {
+                        .hf-photo { max-width: 300px; padding: 7px; }
+                    }
+                    @media (prefers-reduced-motion: reduce) {
+                        .hf-photo { transform: none; transition: none; }
+                    }
                 </style>
 
                 <span class="hf-spark s1"></span>
@@ -3386,6 +3437,10 @@
                         <div class="hf-sub-divider"><span class="line"></span><span class="mark">❦</span><span class="line"></span></div>
                         <p>لنلتقي على الفرح، ونشهد بداية عمر جديد، تحيطه المحبة وتباركه دعوات من نُحب</p>
                     </div>
+                </div>
+
+                <div class="hf-photo">
+                    <img src="img/faris-lana.jpg" width="960" height="1280" loading="lazy" decoding="async" alt="فارس ولانا">
                 </div>
 
                 <script>
@@ -3587,285 +3642,6 @@
             </div>
             <!-- ===== /Family Blessing Section ===== -->
 
-            <!-- ===== Wedding Timeline (custom, animated) ===== -->
-            <div id="tl-section" class="tl-section">
-                <style>
-                    #tl-section {
-                        position: relative;
-                        background-color: #f4e0c8;
-                        padding: 70px 20px 80px;
-                        text-align: center;
-                        direction: rtl;
-                        overflow: hidden;
-                    }
-                    #tl-section::before, #tl-section::after {
-                        content: "";
-                        position: absolute;
-                        width: 260px;
-                        height: 260px;
-                        border-radius: 50%;
-                        background: radial-gradient(circle, rgba(201,173,122,0.16), transparent 70%);
-                        pointer-events: none;
-                    }
-                    #tl-section::before { top: -80px; right: -80px; }
-                    #tl-section::after { bottom: -90px; left: -90px; }
-
-                    .tl-eyebrow-row {
-                        position: relative;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 18px;
-                        opacity: 0;
-                        transform: translateY(14px);
-                        transition: opacity 0.9s ease, transform 0.9s ease;
-                    }
-                    .tl-eyebrow-row span.line {
-                        display: inline-block;
-                        width: 55px;
-                        height: 1px;
-                        background: #c9ad7a;
-                    }
-                    .tl-eyebrow-row span.word {
-                        font-family: 'EB Garamond', serif;
-                        letter-spacing: 3px;
-                        font-size: 15px;
-                        color: #af9b6a;
-                    }
-                    .tl-title {
-                        position: relative;
-                        font-family: 'Amiri', serif;
-                        font-weight: 700;
-                        font-size: 34px;
-                        color: #4a3624;
-                        margin: 16px 0 10px;
-                        opacity: 0;
-                        transform: translateY(14px);
-                        transition: opacity 0.9s ease 0.1s, transform 0.9s ease 0.1s;
-                    }
-                    .tl-flourish {
-                        position: relative;
-                        color: #c9ad7a;
-                        font-size: 17px;
-                        margin-bottom: 14px;
-                        opacity: 0;
-                        transform: translateY(10px) scale(0.8);
-                        transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
-                    }
-                    .tl-date {
-                        position: relative;
-                        font-family: 'EB Garamond', serif;
-                        font-style: italic;
-                        font-size: 15px;
-                        color: #8a6f45;
-                        margin: 0 0 50px;
-                        opacity: 0;
-                        transform: translateY(14px);
-                        transition: opacity 0.9s ease 0.25s, transform 0.9s ease 0.25s;
-                    }
-                    #tl-section.tl-inview .tl-eyebrow-row,
-                    #tl-section.tl-inview .tl-title,
-                    #tl-section.tl-inview .tl-flourish,
-                    #tl-section.tl-inview .tl-date { opacity: 1; transform: translateY(0) scale(1); }
-
-                    .tl-list {
-                        position: relative;
-                        max-width: 460px;
-                        margin: 0 auto;
-                        text-align: right;
-                    }
-                    .tl-spine {
-                        position: absolute;
-                        top: 26px;
-                        bottom: 26px;
-                        right: 27px;
-                        width: 2px;
-                        background: linear-gradient(180deg, #c9ad7a, #e8cfa0 50%, #c9ad7a);
-                        transform: scaleY(0);
-                        transform-origin: top;
-                        transition: transform 1.7s cubic-bezier(.22,1,.36,1) 0.25s;
-                        border-radius: 2px;
-                    }
-                    #tl-section.tl-inview .tl-spine { transform: scaleY(1); }
-
-                    .tl-item {
-                        position: relative;
-                        display: flex;
-                        gap: 16px;
-                        margin-bottom: 22px;
-                        opacity: 0;
-                        transform: translateY(26px) scale(0.97);
-                        transition: opacity 0.75s ease, transform 0.75s cubic-bezier(.22,1,.36,1);
-                    }
-                    .tl-item:last-child { margin-bottom: 0; }
-                    .tl-item:nth-child(2) { transition-delay: 0.45s; }
-                    .tl-item:nth-child(3) { transition-delay: 0.65s; }
-                    .tl-item:nth-child(4) { transition-delay: 0.85s; }
-                    .tl-item:nth-child(5) { transition-delay: 1.05s; }
-                    .tl-item:nth-child(6) { transition-delay: 1.25s; }
-                    #tl-section.tl-inview .tl-item { opacity: 1; transform: translateY(0) scale(1); }
-
-                    .tl-marker { position: relative; flex: 0 0 56px; display: flex; justify-content: center; }
-                    .tl-badge {
-                        position: relative;
-                        z-index: 2;
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        background: radial-gradient(circle at 34% 30%, #fffdf8, #fdf1e0 75%);
-                        border: 1.5px solid #c9ad7a;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        box-shadow: 0 8px 18px rgba(74,54,28,0.18);
-                    }
-                    .tl-badge::after {
-                        content: "";
-                        position: absolute;
-                        inset: -7px;
-                        border-radius: 50%;
-                        border: 1px solid rgba(175,155,106,0.55);
-                        animation: tl-pulse 2.6s ease-in-out infinite;
-                    }
-                    .tl-item:nth-child(1) .tl-badge::after { animation-delay: 0s; }
-                    .tl-item:nth-child(2) .tl-badge::after { animation-delay: 0.4s; }
-                    .tl-item:nth-child(3) .tl-badge::after { animation-delay: 0.8s; }
-                    .tl-item:nth-child(4) .tl-badge::after { animation-delay: 1.2s; }
-                    .tl-item:nth-child(5) .tl-badge::after { animation-delay: 1.6s; }
-                    @keyframes tl-pulse {
-                        0%, 100% { transform: scale(1); opacity: 0.55; }
-                        50% { transform: scale(1.22); opacity: 0; }
-                    }
-                    .tl-badge svg { width: 22px; height: 22px; color: #8a6f45; }
-
-                    .tl-card {
-                        flex: 1;
-                        background: #fffaf2;
-                        border: 1px solid #ecdcb8;
-                        border-radius: 16px;
-                        padding: 14px 18px 15px;
-                        box-shadow: 0 10px 24px rgba(74,54,28,0.10);
-                        text-align: right;
-                        transition: transform 0.35s ease, box-shadow 0.35s ease;
-                    }
-                    .tl-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(74,54,28,0.16); }
-                    .tl-time {
-                        display: inline-block;
-                        font-family: 'EB Garamond', serif;
-                        letter-spacing: 1px;
-                        font-size: 12px;
-                        color: #8a6f45;
-                        background: #f4e0c8;
-                        padding: 3px 12px;
-                        border-radius: 20px;
-                        margin-bottom: 8px;
-                    }
-                    .tl-label {
-                        font-family: 'Amiri', serif;
-                        font-weight: 700;
-                        font-size: 20px;
-                        color: #3f3122;
-                    }
-                    .tl-sub {
-                        font-family: 'EB Garamond', serif;
-                        font-style: italic;
-                        font-size: 13px;
-                        color: #8a6f45;
-                        margin-top: 3px;
-                    }
-
-                    @media screen and (max-width: 479px) {
-                        .tl-title { font-size: 27px; }
-                        .tl-label { font-size: 17px; }
-                        .tl-badge { width: 42px; height: 42px; }
-                        .tl-badge svg { width: 18px; height: 18px; }
-                        .tl-marker { flex-basis: 48px; }
-                        .tl-spine { right: 23px; }
-                    }
-                </style>
-
-                <div class="tl-eyebrow-row">
-                    <span class="line"></span>
-                    <span class="word">THE TIMELINE</span>
-                    <span class="line"></span>
-                </div>
-                <div class="tl-title">برنامج الحفل</div>
-                <div class="tl-flourish">❦</div>
-                <div class="tl-date">١ نوفمبر ٢٠٢٦ &middot; Coral Beach Resort, Sharjah</div>
-
-                <div class="tl-list">
-                    <div class="tl-spine"></div>
-
-                    <div class="tl-item">
-                        <div class="tl-marker">
-                            <div class="tl-badge">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="14" r="6"/><circle cx="15" cy="14" r="6"/></svg>
-                            </div>
-                        </div>
-                        <div class="tl-card">
-                            <span class="tl-time">6:00 PM &ndash; 7:00 PM</span>
-                            <div class="tl-label">Before the I Do's</div>
-                            <div class="tl-sub">ما قبل القِران</div>
-                        </div>
-                    </div>
-
-                    <div class="tl-item">
-                        <div class="tl-marker">
-                            <div class="tl-badge">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="7" r="3"/><circle cx="12" cy="17" r="3"/><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/></svg>
-                            </div>
-                        </div>
-                        <div class="tl-card">
-                            <span class="tl-time">8:00 PM</span>
-                            <div class="tl-label">Bride Entrance</div>
-                            <div class="tl-sub">دخول العروس</div>
-                        </div>
-                    </div>
-
-                    <div class="tl-item">
-                        <div class="tl-marker">
-                            <div class="tl-badge">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
-                            </div>
-                        </div>
-                        <div class="tl-card">
-                            <span class="tl-time">9:00 PM</span>
-                            <div class="tl-label">Buffet, Etc.</div>
-                            <div class="tl-sub">حفل العشاء</div>
-                        </div>
-                    </div>
-
-                    <div class="tl-item">
-                        <div class="tl-marker">
-                            <div class="tl-badge">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17V5l10-2v12"/><circle cx="7" cy="17" r="2.4" fill="currentColor" stroke="none"/><circle cx="17" cy="15" r="2.4" fill="currentColor" stroke="none"/></svg>
-                            </div>
-                        </div>
-                        <div class="tl-card">
-                            <span class="tl-time">10:00 PM &ndash; 12:00 AM</span>
-                            <div class="tl-label">Dance After Dinner</div>
-                            <div class="tl-sub">السهرة الراقصة</div>
-                        </div>
-                    </div>
-                </div>
-
-                <script>
-                    (function() {
-                        var section = document.getElementById('tl-section');
-                        if (!section) return;
-                        var observer = new IntersectionObserver(function(entries) {
-                            entries.forEach(function(entry) {
-                                if (entry.isIntersecting) {
-                                    section.classList.add('tl-inview');
-                                    observer.unobserve(section);
-                                }
-                            });
-                        }, { threshold: 0.15 });
-                        observer.observe(section);
-                    })();
-                </script>
-            </div>
-            <!-- ===== /Wedding Timeline ===== -->
 
             <div id="rec2443433783" class="r t-rec t-rec_pt_15" style="padding-top:15px;background-color:#f9e6d4; " data-animationappear="off" data-record-type="396" data-bg-color="#f9e6d4">
                 <!-- T396 -->
@@ -6453,8 +6229,548 @@
                 </script>
             </div>
             <!-- ===== /Venue Photo + Location ===== -->
+
+            <!-- ===== RSVP / تأكيد الحضور (custom, connected to /api/rsvp) ===== -->
+            <div id="rsvp-section" class="rsvp-section">
+                <style>
+                    #rsvp-section {
+                        position: relative;
+                        background-color: #f4e0c8;
+                        padding: 80px 20px 100px;
+                        text-align: center;
+                        direction: rtl;
+                        overflow: hidden;
+                    }
+                    #rsvp-section::before, #rsvp-section::after {
+                        content: "";
+                        position: absolute;
+                        width: 280px;
+                        height: 280px;
+                        border-radius: 50%;
+                        background: radial-gradient(circle, rgba(201,173,122,0.18), transparent 70%);
+                        pointer-events: none;
+                    }
+                    #rsvp-section::before { top: -90px; left: -90px; }
+                    #rsvp-section::after { bottom: -100px; right: -100px; }
+                    #rsvp-section * { box-sizing: border-box; }
+
+                    .rsvp-head {
+                        position: relative;
+                        opacity: 0;
+                        transform: translateY(14px);
+                        transition: opacity 0.9s ease, transform 0.9s ease;
+                    }
+                    #rsvp-section.rsvp-inview .rsvp-head { opacity: 1; transform: translateY(0); }
+                    .rsvp-eyebrow {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 18px;
+                    }
+                    .rsvp-eyebrow .line { display: inline-block; width: 55px; height: 1px; background: #c9ad7a; }
+                    .rsvp-eyebrow .word {
+                        font-family: 'EB Garamond', serif;
+                        letter-spacing: 3px;
+                        font-size: 15px;
+                        color: #af9b6a;
+                    }
+                    .rsvp-title {
+                        font-family: 'Amiri', serif;
+                        font-weight: 700;
+                        font-size: 36px;
+                        line-height: 1.3;
+                        color: #4a3624;
+                        margin: 16px 0 8px;
+                    }
+                    .rsvp-lead {
+                        font-family: 'Amiri', serif;
+                        font-size: 19px;
+                        line-height: 1.8;
+                        color: #6b5231;
+                        max-width: 420px;
+                        margin: 0 auto 34px;
+                    }
+
+                    .rsvp-card {
+                        position: relative;
+                        max-width: 500px;
+                        margin: 0 auto;
+                        background: #fffaf2;
+                        border: 1px solid #ecdcb8;
+                        border-radius: 20px;
+                        padding: 34px 26px 30px;
+                        box-shadow: 0 18px 40px rgba(74,54,28,0.14);
+                        text-align: right;
+                    }
+                    .rsvp-card::before {
+                        content: "";
+                        position: absolute;
+                        inset: 7px;
+                        border: 1px solid rgba(201,173,122,0.55);
+                        border-radius: 14px;
+                        pointer-events: none;
+                    }
+
+                    .rsvp-field { margin-bottom: 22px; position: relative; }
+                    .rsvp-label, .rsvp-legend {
+                        display: block;
+                        font-family: 'Amiri', serif;
+                        font-weight: 700;
+                        font-size: 18px;
+                        color: #3f3122;
+                        margin-bottom: 9px;
+                        padding: 0;
+                    }
+                    .rsvp-label small { font-weight: 400; color: #8a6f45; font-size: 15px; margin-right: 6px; }
+                    .rsvp-input, .rsvp-textarea {
+                        width: 100%;
+                        font-family: 'Amiri', serif;
+                        font-size: 19px;
+                        color: #3f3122;
+                        background: #fff;
+                        border: 1.5px solid #e3d2ae;
+                        border-radius: 12px;
+                        padding: 13px 16px;
+                        direction: rtl;
+                        text-align: right;
+                        outline: none;
+                        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+                        -webkit-appearance: none;
+                        appearance: none;
+                    }
+                    .rsvp-textarea { min-height: 112px; resize: vertical; line-height: 1.7; }
+                    .rsvp-input::placeholder, .rsvp-textarea::placeholder { color: #b9a77f; }
+                    .rsvp-input:focus, .rsvp-textarea:focus {
+                        border-color: #b08f52;
+                        box-shadow: 0 0 0 4px rgba(201,173,122,0.25);
+                    }
+                    .rsvp-field.rsvp-invalid .rsvp-input,
+                    .rsvp-field.rsvp-invalid .rsvp-choices { border-color: #b4574a; }
+                    .rsvp-field.rsvp-invalid .rsvp-input { box-shadow: 0 0 0 3px rgba(180,87,74,0.14); }
+                    .rsvp-hint {
+                        display: none;
+                        font-family: 'Amiri', serif;
+                        font-size: 16px;
+                        color: #a24a3d;
+                        margin-top: 7px;
+                    }
+                    .rsvp-field.rsvp-invalid .rsvp-hint { display: block; }
+                    .rsvp-count {
+                        position: absolute;
+                        left: 12px;
+                        bottom: 9px;
+                        font-family: 'EB Garamond', serif;
+                        font-size: 13px;
+                        color: #b9a77f;
+                        pointer-events: none;
+                        direction: ltr;
+                        unicode-bidi: isolate;
+                    }
+
+                    fieldset.rsvp-fieldset { border: 0; margin: 0 0 22px; padding: 0; min-width: 0; }
+                    .rsvp-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; border-radius: 14px; }
+                    .rsvp-choice { position: relative; display: flex; cursor: pointer; }
+                    .rsvp-choice input {
+                        position: absolute;
+                        opacity: 0;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        margin: 0;
+                        cursor: pointer;
+                    }
+                    .rsvp-choice .box {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 4px;
+                        min-height: 92px;
+                        padding: 14px 10px;
+                        text-align: center;
+                        background: #fff;
+                        border: 1.5px solid #e3d2ae;
+                        border-radius: 14px;
+                        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+                    }
+                    .rsvp-choice .ico {
+                        width: 26px; height: 26px;
+                        color: #b9a77f;
+                        transition: color 0.25s ease;
+                    }
+                    .rsvp-choice .t { font-family: 'Amiri', serif; font-weight: 700; font-size: 19px; line-height: 1.3; color: #3f3122; }
+                    .rsvp-choice .s { font-family: 'Amiri', serif; font-size: 15px; color: #8a6f45; }
+                    .rsvp-choice input:checked + .box {
+                        background: #f8ecd2;
+                        border-color: #b08f52;
+                        box-shadow: 0 8px 18px rgba(74,54,28,0.12);
+                        transform: translateY(-2px);
+                    }
+                    .rsvp-choice input:checked + .box .ico { color: #6b5231; }
+                    .rsvp-choice input:focus-visible + .box { outline: 3px solid rgba(176,143,82,0.6); outline-offset: 2px; }
+
+                    .rsvp-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+
+                    .rsvp-error {
+                        display: none;
+                        font-family: 'Amiri', serif;
+                        font-size: 17px;
+                        line-height: 1.6;
+                        color: #8f3a2e;
+                        background: #fbeae6;
+                        border: 1px solid #efc4bb;
+                        border-radius: 12px;
+                        padding: 11px 14px;
+                        margin-bottom: 16px;
+                    }
+                    .rsvp-error.rsvp-show { display: block; }
+
+                    .rsvp-submit {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+                        font-family: 'Amiri', serif;
+                        font-weight: 700;
+                        font-size: 21px;
+                        color: #fffaf2;
+                        background: #4a3624;
+                        border: 0;
+                        border-radius: 14px;
+                        padding: 15px 20px;
+                        cursor: pointer;
+                        box-shadow: 0 10px 22px rgba(74,54,36,0.28);
+                        transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+                        -webkit-tap-highlight-color: transparent;
+                    }
+                    .rsvp-submit:hover { background: #5a432d; }
+                    .rsvp-submit:active { transform: scale(0.985); }
+                    .rsvp-submit:focus-visible { outline: 3px solid rgba(176,143,82,0.7); outline-offset: 3px; }
+                    .rsvp-submit[disabled] { opacity: 0.75; cursor: progress; }
+                    .rsvp-spin {
+                        display: none;
+                        width: 20px; height: 20px;
+                        border-radius: 50%;
+                        border: 2.5px solid rgba(255,250,242,0.35);
+                        border-top-color: #fffaf2;
+                        animation: rsvpSpin 0.8s linear infinite;
+                    }
+                    .rsvp-submit.rsvp-busy .rsvp-spin { display: inline-block; }
+                    @keyframes rsvpSpin { to { transform: rotate(360deg); } }
+
+                    .rsvp-done { text-align: center; padding: 10px 4px 4px; }
+                    .rsvp-done[hidden], #rsvp-form[hidden] { display: none; }
+                    .rsvp-seal {
+                        width: 78px; height: 78px;
+                        margin: 0 auto 18px;
+                        border-radius: 50%;
+                        background: radial-gradient(circle at 34% 30%, #fffdf8, #f8ecd2 80%);
+                        border: 1.5px solid #c9ad7a;
+                        box-shadow: 0 10px 22px rgba(74,54,28,0.16);
+                        display: flex; align-items: center; justify-content: center;
+                    }
+                    .rsvp-seal svg { width: 38px; height: 38px; }
+                    .rsvp-seal path { stroke-dasharray: 40; stroke-dashoffset: 0; }
+                    .rsvp-done.rsvp-fresh .rsvp-seal { animation: rsvpPop 0.6s cubic-bezier(.22,1,.36,1) both; }
+                    .rsvp-done.rsvp-fresh .rsvp-seal path { stroke-dashoffset: 40; animation: rsvpDraw 0.7s ease 0.35s forwards; }
+                    @keyframes rsvpPop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+                    @keyframes rsvpDraw { to { stroke-dashoffset: 0; } }
+                    .rsvp-done-title {
+                        font-family: 'Amiri', serif;
+                        font-weight: 700;
+                        font-size: 28px;
+                        color: #4a3624;
+                        margin: 0 0 10px;
+                        line-height: 1.4;
+                    }
+                    .rsvp-done-text {
+                        font-family: 'Amiri', serif;
+                        font-size: 20px;
+                        line-height: 1.9;
+                        color: #5b4630;
+                        margin: 0 auto;
+                        max-width: 380px;
+                    }
+                    .rsvp-done-flourish { color: #c9ad7a; font-size: 20px; margin: 16px 0 12px; }
+                    .rsvp-done-note {
+                        font-family: 'Amiri', serif;
+                        font-size: 15.5px;
+                        color: #8a6f45;
+                        margin: 0;
+                    }
+
+                    @media screen and (max-width: 479px) {
+                        #rsvp-section { padding: 64px 14px 84px; }
+                        .rsvp-title { font-size: 29px; }
+                        .rsvp-lead { font-size: 17.5px; }
+                        .rsvp-card { padding: 28px 18px 24px; }
+                        .rsvp-choice .t { font-size: 17.5px; }
+                        .rsvp-choice .box { min-height: 88px; }
+                    }
+                    @media (prefers-reduced-motion: reduce) {
+                        .rsvp-head, .rsvp-choice .box, .rsvp-submit { transition: none; }
+                        .rsvp-done.rsvp-fresh .rsvp-seal, .rsvp-done.rsvp-fresh .rsvp-seal path { animation: none; stroke-dashoffset: 0; }
+                        .rsvp-spin { animation-duration: 2s; }
+                    }
+                </style>
+
+                <div class="rsvp-head">
+                    <div class="rsvp-eyebrow">
+                        <span class="line"></span>
+                        <span class="word">RSVP</span>
+                        <span class="line"></span>
+                    </div>
+                    <div class="rsvp-title">تأكيد الحضور</div>
+                    <p class="rsvp-lead">يسعدنا معرفة ما إذا كنت ستشاركنا فرحتنا، ويسعدنا أيضًا أن تترك لنا رسالة.</p>
+                </div>
+
+                <div class="rsvp-card" id="rsvp-card">
+                    <form id="rsvp-form" novalidate autocomplete="on">
+                        <div class="rsvp-field" data-field="name">
+                            <label class="rsvp-label" for="rsvp-name">الاسم</label>
+                            <input class="rsvp-input" id="rsvp-name" name="name" type="text" maxlength="80" autocomplete="name" placeholder="اكتب اسمك" enterkeyhint="next">
+                            <div class="rsvp-hint">من فضلك اكتب اسمك.</div>
+                        </div>
+
+                        <fieldset class="rsvp-fieldset rsvp-field" data-field="attending">
+                            <legend class="rsvp-legend">هل ستحضر الحفل؟</legend>
+                            <div class="rsvp-choices">
+                                <label class="rsvp-choice">
+                                    <input type="radio" name="attending" value="yes">
+                                    <span class="box">
+                                        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg>
+                                        <span class="t">نعم، سأحضر</span>
+                                        <span class="s">بإذن الله</span>
+                                    </span>
+                                </label>
+                                <label class="rsvp-choice">
+                                    <input type="radio" name="attending" value="no">
+                                    <span class="box">
+                                        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+                                        <span class="t">لن أستطيع الحضور</span>
+                                        <span class="s">مع خالص الشكر</span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="rsvp-hint">اختر أحد الخيارين من فضلك.</div>
+                        </fieldset>
+
+                        <div class="rsvp-field" data-field="message">
+                            <label class="rsvp-label" for="rsvp-message">رسالة للعروسين <small>(اختياري)</small></label>
+                            <textarea class="rsvp-textarea" id="rsvp-message" name="message" maxlength="500" placeholder="اكتب تهنئتك أو رسالتك هنا"></textarea>
+                            <span class="rsvp-count" id="rsvp-count" aria-hidden="true">0 / 500</span>
+                        </div>
+
+                        <div class="rsvp-hp" aria-hidden="true">
+                            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+                        </div>
+
+                        <div class="rsvp-error" id="rsvp-error" role="alert"></div>
+
+                        <button type="submit" class="rsvp-submit" id="rsvp-submit">
+                            <span class="rsvp-spin" aria-hidden="true"></span>
+                            <span class="rsvp-submit-label">إرسال الرد</span>
+                        </button>
+                    </form>
+
+                    <div class="rsvp-done" id="rsvp-done" hidden aria-live="polite">
+                        <div class="rsvp-seal">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#6b5231" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.6l4.4 4.4L19 7.4"/></svg>
+                        </div>
+                        <h3 class="rsvp-done-title" id="rsvp-done-title"></h3>
+                        <p class="rsvp-done-text" id="rsvp-done-text"></p>
+                        <div class="rsvp-done-flourish">❦</div>
+                        <p class="rsvp-done-note">تم تسجيل ردّك، ولا يمكن إرسال رد آخر من هذا الجهاز.</p>
+                    </div>
+                </div>
+
+                <script>
+                    (function() {
+                        var section = document.getElementById('rsvp-section');
+                        if (!section) return;
+
+                        /* ---- reveal on scroll ---- */
+                        if ('IntersectionObserver' in window) {
+                            var io = new IntersectionObserver(function(entries) {
+                                entries.forEach(function(en) {
+                                    if (en.isIntersecting) { section.classList.add('rsvp-inview'); io.unobserve(section); }
+                                });
+                            }, { threshold: 0.12 });
+                            io.observe(section);
+                        } else { section.classList.add('rsvp-inview'); }
+
+                        /* ---- elements ---- */
+                        var API = (window.WG_API_BASE || '') + '/api/rsvp';
+                        var LS_KEY = 'wg_rsvp_v1';
+                        var form = document.getElementById('rsvp-form');
+                        var done = document.getElementById('rsvp-done');
+                        var errBox = document.getElementById('rsvp-error');
+                        var btn = document.getElementById('rsvp-submit');
+                        var nameInput = document.getElementById('rsvp-name');
+                        var msgInput = document.getElementById('rsvp-message');
+                        var counter = document.getElementById('rsvp-count');
+                        var fName = form.querySelector('[data-field="name"]');
+                        var fAtt = form.querySelector('[data-field="attending"]');
+
+                        function lsGet() { try { return JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) { return null; } }
+                        function lsSet(v) { try { localStorage.setItem(LS_KEY, JSON.stringify(v)); } catch (e) {} }
+
+                        function showError(msg) {
+                            errBox.textContent = msg || '';
+                            errBox.classList.toggle('rsvp-show', !!msg);
+                        }
+
+                        function showDone(data, fresh) {
+                            var nm = (data && data.name ? String(data.name) : '').trim();
+                            var first = nm ? nm.split(/\s+/)[0] : '';
+                            var yes = !!(data && data.attending);
+                            var title = document.getElementById('rsvp-done-title');
+                            var text = document.getElementById('rsvp-done-text');
+                            if (yes) {
+                                title.textContent = first ? ('شكرًا لك يا ' + first + '، تم تأكيد حضورك') : 'شكرًا لك، تم تأكيد حضورك';
+                                text.textContent = 'وصلنا ردّك بنجاح، ويسعد فارس ولانا بمشاركتك فرحتهما. نتمنى لك أجمل الأوقات، ونراك في ليلة العمر بإذن الله.';
+                            } else {
+                                title.textContent = first ? ('شكرًا لك يا ' + first + '، وصلنا ردّك') : 'شكرًا لك، وصلنا ردّك';
+                                text.textContent = 'نقدّر اهتمامك ونتمنى لك دوام السعادة والتوفيق. سنفتقد وجودك، وتبقى دعواتك لنا أجمل هدية.';
+                            }
+                            form.hidden = true;
+                            done.hidden = false;
+                            done.classList.toggle('rsvp-fresh', !!fresh);
+                            if (fresh) {
+                                try { done.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+                            }
+                        }
+
+                        /* ---- character counter ---- */
+                        function updCount() { counter.textContent = msgInput.value.length + ' / 500'; }
+                        msgInput.addEventListener('input', updCount);
+
+                        nameInput.addEventListener('input', function() { fName.classList.remove('rsvp-invalid'); });
+                        form.addEventListener('change', function(e) {
+                            if (e.target && e.target.name === 'attending') fAtt.classList.remove('rsvp-invalid');
+                        });
+
+                        /* ---- already answered? (this device / browser) ---- */
+                        var cached = lsGet();
+                        if (cached && cached.done) { showDone(cached, false); }
+                        try {
+                            fetch(API, { method: 'GET', credentials: 'same-origin', headers: { 'Accept': 'application/json' } })
+                                .then(function(r) { return r.ok ? r.json() : null; })
+                                .then(function(d) {
+                                    if (d && d.submitted) {
+                                        lsSet({ done: true, name: d.name, attending: d.attending });
+                                        showDone(d, false);
+                                    }
+                                })
+                                .catch(function() {});
+                        } catch (e) {}
+
+                        /* ---- submit ---- */
+                        var sending = false;
+                        form.addEventListener('submit', function(ev) {
+                            ev.preventDefault();
+                            if (sending) return;
+                            showError('');
+
+                            var name = nameInput.value.replace(/\s+/g, ' ').trim();
+                            var picked = form.querySelector('input[name="attending"]:checked');
+                            var ok = true;
+                            if (name.length < 2) { fName.classList.add('rsvp-invalid'); ok = false; }
+                            if (!picked) { fAtt.classList.add('rsvp-invalid'); ok = false; }
+                            if (!ok) {
+                                var firstBad = form.querySelector('.rsvp-invalid');
+                                if (firstBad) { try { firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} }
+                                if (name.length < 2) nameInput.focus();
+                                return;
+                            }
+
+                            var payload = {
+                                name: name,
+                                attending: picked.value === 'yes',
+                                message: msgInput.value.trim(),
+                                website: form.elements['website'].value
+                            };
+
+                            sending = true;
+                            btn.disabled = true;
+                            btn.classList.add('rsvp-busy');
+                            btn.querySelector('.rsvp-submit-label').textContent = 'جارٍ الإرسال...';
+
+                            var finish = function() {
+                                sending = false;
+                                btn.disabled = false;
+                                btn.classList.remove('rsvp-busy');
+                                btn.querySelector('.rsvp-submit-label').textContent = 'إرسال الرد';
+                            };
+
+                            fetch(API, {
+                                method: 'POST',
+                                credentials: 'same-origin',
+                                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                                body: JSON.stringify(payload)
+                            }).then(function(r) {
+                                return r.json().catch(function() { return {}; }).then(function(d) { return { status: r.status, data: d }; });
+                            }).then(function(res) {
+                                if (res.status === 201 || res.status === 200) {
+                                    lsSet({ done: true, name: payload.name, attending: payload.attending });
+                                    showDone({ name: payload.name, attending: payload.attending }, true);
+                                } else if (res.status === 409) {
+                                    var d = res.data || {};
+                                    lsSet({ done: true, name: d.name || payload.name, attending: typeof d.attending === 'boolean' ? d.attending : payload.attending });
+                                    showDone({ name: d.name || payload.name, attending: typeof d.attending === 'boolean' ? d.attending : payload.attending }, false);
+                                } else if (res.status === 400 && res.data && res.data.message) {
+                                    showError(res.data.message);
+                                    finish();
+                                } else if (res.status === 429) {
+                                    showError('محاولات كثيرة في وقت قصير، من فضلك انتظر قليلًا ثم حاول مرة أخرى.');
+                                    finish();
+                                } else {
+                                    showError('تعذّر إرسال ردّك الآن. من فضلك حاول مرة أخرى بعد قليل.');
+                                    finish();
+                                }
+                            }).catch(function() {
+                                showError('تعذّر الاتصال بالإنترنت. تأكد من الاتصال ثم أعد المحاولة.');
+                                finish();
+                            });
+                        });
+                    })();
+                </script>
+            </div>
+            <!-- ===== /RSVP ===== -->
         </div>
         <!--/allrecords-->
+
+        <!-- ===== Visit tracking (counts visitors for the admin dashboard) ===== -->
+        <script>
+            (function() {
+                var API = (window.WG_API_BASE || '') + '/api/visit';
+                function ping(type) {
+                    try {
+                        fetch(API, {
+                            method: 'POST',
+                            credentials: 'same-origin',
+                            keepalive: true,
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ type: type })
+                        }).catch(function() {});
+                    } catch (e) {}
+                }
+                function once(key, type) {
+                    try {
+                        if (sessionStorage.getItem(key)) return;
+                        sessionStorage.setItem(key, '1');
+                    } catch (e) {}
+                    ping(type);
+                }
+                once('wg_v', 'view');
+                document.addEventListener('click', function(e) {
+                    if (e.target && e.target.closest && e.target.closest('.popup-enter')) { once('wg_o', 'open'); }
+                }, true);
+            })();
+        </script>
+        <!-- ===== /Visit tracking ===== -->
         <!-- Stat -->
         <script type="text/javascript">
             if (!window.mainTracker) {

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#241b13">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="متابعة الدعوة">
+<title>لوحة متابعة الدعوة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #241b13;
+    --espresso: #3a2a18;
+    --gold: #b08f52;
+    --gold-soft: #e8d3a4;
+    --paper: #f6ecdc;
+    --ivory: #fffaf2;
+    --line: #e4d4b4;
+    --text: #33261a;
+    --muted: #8a7550;
+    --sage: #55704f;
+    --sage-bg: #e3ecdd;
+    --clay: #a4574a;
+    --clay-bg: #f4e1dc;
+    --display: 'Amiri', 'Times New Roman', serif;
+    --ui: 'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--ui);
+    color: var(--text);
+    background: var(--paper);
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  button, input { font-family: inherit; }
+  :focus-visible { outline: 3px solid rgba(176,143,82,0.65); outline-offset: 2px; border-radius: 8px; }
+
+  /* ---------- login ---------- */
+  .login {
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 28px 20px;
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(176,143,82,0.28), transparent 60%),
+      var(--ink);
+  }
+  .login-box { width: 100%; max-width: 360px; text-align: center; color: var(--ivory); }
+  .login-orn { font-size: 26px; color: var(--gold); margin-bottom: 6px; }
+  .login-title { font-family: var(--display); font-weight: 700; font-size: 38px; line-height: 1.25; margin: 0 0 4px; }
+  .login-sub { color: var(--gold-soft); opacity: 0.85; margin: 0 0 30px; font-size: 15px; }
+  .login input {
+    width: 100%; font-size: 17px; padding: 14px 16px;
+    color: var(--ivory); background: rgba(255,250,242,0.07);
+    border: 1.5px solid rgba(232,211,164,0.35); border-radius: 12px; text-align: center;
+    letter-spacing: 1px; outline: none; transition: border-color .2s, background .2s;
+  }
+  .login input:focus { border-color: var(--gold); background: rgba(255,250,242,0.11); }
+  .login input::placeholder { color: rgba(232,211,164,0.55); letter-spacing: 0; }
+  .login .err { min-height: 26px; margin: 12px 0 4px; font-size: 14.5px; color: #f2b7ab; }
+  .btn-gold {
+    width: 100%; font-size: 17px; font-weight: 600; color: var(--ink);
+    background: var(--gold-soft); border: 0; border-radius: 12px; padding: 14px;
+    cursor: pointer; transition: background .2s, transform .15s;
+  }
+  .btn-gold:hover { background: #f0dfb8; }
+  .btn-gold:active { transform: scale(.985); }
+  .btn-gold[disabled] { opacity: .7; cursor: progress; }
+
+  /* ---------- dashboard shell ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--ink); color: var(--ivory);
+    padding: calc(12px + env(safe-area-inset-top, 0px)) 16px 12px;
+    border-bottom: 1px solid rgba(232,211,164,0.18);
+  }
+  .topbar-in { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand-title { font-family: var(--display); font-weight: 700; font-size: 24px; line-height: 1.2; }
+  .brand-sub { font-size: 12.5px; color: var(--gold-soft); opacity: .8; }
+  .tools { display: flex; gap: 6px; }
+  .icon-btn {
+    width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center;
+    color: var(--gold-soft); background: rgba(255,250,242,0.07);
+    border: 1px solid rgba(232,211,164,0.22); border-radius: 12px; cursor: pointer;
+    transition: background .2s;
+  }
+  .icon-btn:hover { background: rgba(255,250,242,0.14); }
+  .icon-btn svg { width: 20px; height: 20px; }
+  .icon-btn.spin svg { animation: spin 0.9s linear infinite; }
+  @keyframes spin { to { transform: rotate(-360deg); } }
+
+  main { max-width: 760px; margin: 0 auto; padding: 22px 16px calc(40px + env(safe-area-inset-bottom, 0px)); }
+
+  /* ---------- hero number ---------- */
+  .hero { padding: 6px 4px 22px; border-bottom: 1px solid var(--line); }
+  .hero-label { font-size: 15px; color: var(--muted); font-weight: 500; }
+  .hero-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .hero-num { font-family: var(--display); font-weight: 700; font-size: 92px; line-height: 1; color: var(--espresso); }
+  .hero-of { font-size: 16px; color: var(--muted); }
+  .split { display: flex; height: 10px; border-radius: 10px; overflow: hidden; background: var(--line); margin: 18px 0 10px; }
+  .split i { display: block; height: 100%; transition: width .8s cubic-bezier(.22,1,.36,1); }
+  .split .yes { background: var(--sage); }
+  .split .no { background: var(--clay); }
+  .legend { display: flex; gap: 20px; font-size: 14.5px; color: var(--text); flex-wrap: wrap; }
+  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-left: 7px; background: var(--dot, var(--line)); }
+  .legend .y { --dot: var(--sage); }
+  .legend .n { --dot: var(--clay); }
+  .legend b { font-weight: 600; font-size: 16px; }
+
+  /* ---------- stat strip ---------- */
+  .strip { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
+  .strip > div { padding: 18px 6px 18px; text-align: center; }
+  .strip > div + div { border-right: 1px solid var(--line); }
+  .strip .n { font-family: var(--display); font-weight: 700; font-size: 38px; line-height: 1.1; color: var(--espresso); }
+  .strip .l { font-size: 13.5px; color: var(--muted); margin-top: 2px; }
+  .rate { padding: 14px 4px; font-size: 14.5px; color: var(--muted); border-bottom: 1px solid var(--line); }
+  .rate b { color: var(--espresso); font-weight: 600; }
+
+  /* ---------- chart ---------- */
+  .block-h { display: flex; align-items: baseline; justify-content: space-between; margin: 28px 4px 12px; }
+  .block-h h2 { margin: 0; font-family: var(--display); font-size: 25px; font-weight: 700; color: var(--espresso); }
+  .block-h .aside { font-size: 13.5px; color: var(--muted); }
+  .chart { display: flex; align-items: flex-end; gap: 5px; height: 110px; padding: 0 4px; }
+  .chart .col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; min-width: 0; }
+  .chart .bar { width: 100%; max-width: 26px; background: var(--gold); border-radius: 5px 5px 2px 2px; min-height: 3px; opacity: .9; transition: height .7s cubic-bezier(.22,1,.36,1); }
+  .chart .bar.zero { background: var(--line); opacity: 1; }
+  .chart-axis { display: flex; justify-content: space-between; padding: 6px 4px 0; font-size: 12px; color: var(--muted); }
+
+  /* ---------- responses ---------- */
+  .filters { display: flex; gap: 8px; overflow-x: auto; padding: 2px 4px 12px; scrollbar-width: none; }
+  .filters::-webkit-scrollbar { display: none; }
+  .chip {
+    flex: 0 0 auto; font-size: 14.5px; padding: 8px 15px; border-radius: 999px; cursor: pointer;
+    color: var(--text); background: transparent; border: 1.5px solid var(--line);
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .chip[aria-pressed="true"] { background: var(--espresso); border-color: var(--espresso); color: var(--ivory); }
+  .chip small { opacity: .7; margin-right: 4px; font-size: 12.5px; }
+  .search {
+    width: 100%; font-size: 16px; padding: 12px 14px; margin: 0 0 6px;
+    background: var(--ivory); color: var(--text); border: 1.5px solid var(--line); border-radius: 12px; outline: none;
+  }
+  .search:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(176,143,82,0.2); }
+
+  .list { list-style: none; margin: 8px 0 0; padding: 0; }
+  .item { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 16px 4px; border-bottom: 1px solid var(--line); }
+  .item-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-width: 0; }
+  .who { font-weight: 600; font-size: 17px; color: var(--espresso); overflow-wrap: anywhere; }
+  .tag { font-size: 12.5px; font-weight: 600; padding: 2px 10px; border-radius: 999px; }
+  .tag.y { color: var(--sage); background: var(--sage-bg); }
+  .tag.n { color: var(--clay); background: var(--clay-bg); }
+  .when { font-size: 12.5px; color: var(--muted); align-self: center; white-space: nowrap; }
+  .msg {
+    grid-column: 1 / -1; margin: 6px 0 0; padding: 10px 14px 10px 12px;
+    background: var(--ivory); border-right: 3px solid var(--gold-soft); border-radius: 4px 10px 10px 4px;
+    font-size: 15.5px; color: #4b3a27; white-space: pre-wrap; overflow-wrap: anywhere;
+  }
+  .del {
+    grid-row: 1; grid-column: 2; justify-self: end; align-self: start;
+    width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center;
+    color: var(--muted); background: transparent; border: 0; border-radius: 10px; cursor: pointer; opacity: .75;
+  }
+  .del:hover { color: var(--clay); background: var(--clay-bg); opacity: 1; }
+  .del svg { width: 18px; height: 18px; }
+  .item-meta { display: flex; align-items: center; gap: 4px; }
+  .empty { text-align: center; padding: 44px 16px; color: var(--muted); }
+  .empty .orn { color: var(--gold); font-size: 24px; margin-bottom: 4px; }
+  .empty p { margin: 0; font-size: 15.5px; }
+
+  /* ---------- dialog + toast ---------- */
+  dialog {
+    border: 0; border-radius: 18px; padding: 24px 22px 20px; max-width: 340px; width: calc(100% - 40px);
+    background: var(--ivory); color: var(--text); box-shadow: 0 30px 60px rgba(36,27,19,.35);
+    font-family: var(--ui); text-align: center;
+  }
+  dialog::backdrop { background: rgba(36,27,19,.55); }
+  dialog h3 { font-family: var(--display); font-size: 24px; margin: 0 0 6px; color: var(--espresso); }
+  dialog p { margin: 0 0 18px; font-size: 15px; color: var(--muted); overflow-wrap: anywhere; }
+  .dlg-btns { display: flex; gap: 10px; }
+  .dlg-btns button { flex: 1; font-size: 16px; font-weight: 600; padding: 12px; border-radius: 12px; cursor: pointer; border: 1.5px solid var(--line); background: transparent; color: var(--text); }
+  .dlg-btns .danger { background: var(--clay); border-color: var(--clay); color: #fff; }
+  .toast {
+    position: fixed; left: 50%; bottom: calc(22px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px);
+    background: var(--ink); color: var(--ivory); padding: 11px 18px; border-radius: 12px; font-size: 14.5px;
+    opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 50; max-width: calc(100% - 32px);
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  .skeleton { color: transparent !important; background: linear-gradient(90deg, var(--line), #efe3c8, var(--line)); background-size: 200% 100%; animation: sk 1.2s linear infinite; border-radius: 8px; }
+  @keyframes sk { to { background-position: -200% 0; } }
+
+  @media (min-width: 640px) {
+    .hero-num { font-size: 112px; }
+    .strip .n { font-size: 44px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<section class="login" id="view-login" hidden>
+  <form class="login-box" id="login-form" autocomplete="on">
+    <div class="login-orn">❦</div>
+    <h1 class="login-title">لوحة المتابعة</h1>
+    <p class="login-sub" id="login-sub">أدخل كلمة السر للمتابعة</p>
+    <input type="password" id="pw" name="password" placeholder="كلمة السر" autocomplete="current-password" required aria-label="كلمة السر">
+    <div class="err" id="login-err" role="alert"></div>
+    <button class="btn-gold" type="submit" id="login-btn">دخول</button>
+  </form>
+</section>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="view-dash" hidden>
+  <header class="topbar">
+    <div class="topbar-in">
+      <div>
+        <div class="brand-title" id="brand-title">&nbsp;</div>
+        <div class="brand-sub">لوحة متابعة الدعوة</div>
+      </div>
+      <div class="tools">
+        <button class="icon-btn" id="btn-refresh" title="تحديث" aria-label="تحديث">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>
+        </button>
+        <a class="icon-btn" id="btn-export" href="/api/admin?action=export" title="تصدير Excel" aria-label="تصدير الردود">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 11 12 15.5 16.5 11"/><path d="M5 19h14"/></svg>
+        </a>
+        <button class="icon-btn" id="btn-logout" title="تسجيل الخروج" aria-label="تسجيل الخروج">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4"/><path d="M15 8l4 4-4 4"/><path d="M19 12H9"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="الحضور المؤكد">
+      <div class="hero-label">سيحضرون الحفل</div>
+      <div class="hero-row">
+        <div class="hero-num skeleton" id="n-attending">00</div>
+        <div class="hero-of" id="hero-of"></div>
+      </div>
+      <div class="split" aria-hidden="true"><i class="yes" id="bar-yes" style="width:0"></i><i class="no" id="bar-no" style="width:0"></i></div>
+      <div class="legend">
+        <span class="y">سيحضرون <b id="lg-yes">0</b></span>
+        <span class="n">يعتذرون <b id="lg-no">0</b></span>
+      </div>
+    </section>
+
+    <section class="strip" aria-label="زيارات الدعوة">
+      <div><div class="n" id="n-visitors">0</div><div class="l">زائر للدعوة</div></div>
+      <div><div class="n" id="n-opened">0</div><div class="l">فتحوا الدعوة</div></div>
+      <div><div class="n" id="n-views">0</div><div class="l">مرة مشاهدة</div></div>
+    </section>
+    <div class="rate" id="rate"></div>
+
+    <div class="block-h"><h2>الزوار الجدد</h2><span class="aside">آخر ١٤ يومًا</span></div>
+    <div class="chart" id="chart" role="img" aria-label="عدد الزوار الجدد يوميًا"></div>
+    <div class="chart-axis"><span id="ax-start"></span><span id="ax-end"></span></div>
+
+    <div class="block-h"><h2>الردود والرسائل</h2><span class="aside" id="resp-count"></span></div>
+    <div class="filters" id="filters" role="group" aria-label="تصفية الردود">
+      <button class="chip" data-f="all" aria-pressed="true">الكل</button>
+      <button class="chip" data-f="yes" aria-pressed="false">سيحضرون</button>
+      <button class="chip" data-f="no" aria-pressed="false">يعتذرون</button>
+      <button class="chip" data-f="msg" aria-pressed="false">برسالة</button>
+    </div>
+    <input class="search" id="search" type="search" placeholder="ابحث بالاسم أو في الرسائل" aria-label="بحث">
+    <ul class="list" id="list"></ul>
+  </main>
+</div>
+
+<dialog id="dlg">
+  <h3>حذف هذا الرد؟</h3>
+  <p id="dlg-text"></p>
+  <div class="dlg-btns">
+    <button type="button" id="dlg-cancel">إلغاء</button>
+    <button type="button" class="danger" id="dlg-ok">حذف</button>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var state = { rsvps: [], filter: 'all', q: '', loaded: false, pendingDelete: null };
+  var timer = null;
+
+  var nf = new Intl.NumberFormat('en-US');
+  function fmt(n) { return nf.format(n || 0); }
+  function whenText(iso) {
+    try {
+      return new Date(iso).toLocaleString('ar-EG-u-nu-latn', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
+    } catch (e) { return ''; }
+  }
+  function dayText(key) {
+    try {
+      var p = key.split('-');
+      return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString('ar-EG-u-nu-latn', { day: 'numeric', month: 'short' });
+    } catch (e) { return key; }
+  }
+
+  var toastTimer;
+  function toast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2800);
+  }
+
+  function showLogin(msg) {
+    $('view-dash').hidden = true;
+    $('view-login').hidden = false;
+    if (msg) $('login-err').textContent = msg;
+    clearInterval(timer);
+    setTimeout(function () { $('pw').focus(); }, 50);
+  }
+  function showDash() {
+    $('view-login').hidden = true;
+    $('view-dash').hidden = false;
+    clearInterval(timer);
+    timer = setInterval(function () { if (!document.hidden) load(true); }, 60000);
+  }
+
+  /* ---------- api ---------- */
+  function call(action, opts) {
+    opts = opts || {};
+    return fetch('/api/admin?action=' + action + (opts.query || ''), {
+      method: opts.method || 'GET',
+      credentials: 'same-origin',
+      headers: opts.body ? { 'Content-Type': 'application/json' } : {},
+      body: opts.body ? JSON.stringify(opts.body) : undefined
+    });
+  }
+
+  function load(silent) {
+    var btn = $('btn-refresh');
+    if (!silent) btn.classList.add('spin');
+    return call('data').then(function (r) {
+      if (r.status === 401) { showLogin(''); return null; }
+      if (!r.ok) throw new Error('bad');
+      return r.json();
+    }).then(function (d) {
+      btn.classList.remove('spin');
+      if (!d) return;
+      state.loaded = true;
+      showDash();
+      render(d);
+    }).catch(function () {
+      btn.classList.remove('spin');
+      if (!silent) toast('تعذّر تحميل البيانات، حاول مرة أخرى.');
+      if (!state.loaded) { showLogin('تعذّر الاتصال بالخادم.'); }
+    });
+  }
+
+  /* ---------- render ---------- */
+  function render(d) {
+    var s = d.stats;
+    $('brand-title').textContent = (d.event && d.event.title) || '';
+    document.title = 'متابعة الدعوة · ' + ((d.event && d.event.title) || '');
+    var hero = $('n-attending');
+    hero.classList.remove('skeleton');
+    hero.textContent = fmt(s.attending);
+    $('hero-of').textContent = s.responses ? ('من ' + fmt(s.responses) + (s.responses === 1 ? ' رد' : ' ردًا')) : 'لا توجد ردود بعد';
+    var yesPct = s.responses ? (s.attending / s.responses * 100) : 0;
+    $('bar-yes').style.width = yesPct + '%';
+    $('bar-no').style.width = s.responses ? (100 - yesPct) + '%' : '0';
+    $('lg-yes').textContent = fmt(s.attending);
+    $('lg-no').textContent = fmt(s.declined);
+
+    $('n-visitors').textContent = fmt(s.visitors);
+    $('n-opened').textContent = fmt(s.opened);
+    $('n-views').textContent = fmt(s.views);
+
+    var rate = $('rate');
+    rate.textContent = '';
+    if (s.visitors > 0) {
+      var pct = Math.min(100, Math.round(s.responses / s.visitors * 100));
+      var b = document.createElement('b');
+      b.textContent = pct + '٪';
+      rate.appendChild(b);
+      rate.appendChild(document.createTextNode(' من زوار الدعوة أرسلوا ردّهم'));
+    } else {
+      rate.textContent = 'لم يزر الدعوة أحد بعد.';
+    }
+
+    // chart
+    var chart = $('chart');
+    chart.textContent = '';
+    var max = 1;
+    d.daily.forEach(function (x) { if (x.visitors > max) max = x.visitors; });
+    d.daily.forEach(function (x) {
+      var col = document.createElement('div');
+      col.className = 'col';
+      col.title = dayText(x.date) + ': ' + x.visitors + ' زائر';
+      var bar = document.createElement('div');
+      bar.className = 'bar' + (x.visitors ? '' : ' zero');
+      bar.style.height = x.visitors ? Math.max(6, Math.round(x.visitors / max * 100)) + '%' : '3px';
+      col.appendChild(bar);
+      chart.appendChild(col);
+    });
+    if (d.daily.length) {
+      $('ax-start').textContent = dayText(d.daily[0].date);
+      $('ax-end').textContent = dayText(d.daily[d.daily.length - 1].date);
+    }
+
+    state.rsvps = d.rsvps || [];
+    renderList();
+  }
+
+  function renderList() {
+    var all = state.rsvps;
+    var q = state.q.trim().toLowerCase();
+    var counts = {
+      all: all.length,
+      yes: all.filter(function (x) { return x.attending; }).length,
+      no: all.filter(function (x) { return !x.attending; }).length,
+      msg: all.filter(function (x) { return x.message; }).length
+    };
+    var labels = { all: 'الكل', yes: 'سيحضرون', no: 'يعتذرون', msg: 'برسالة' };
+    Array.prototype.forEach.call($('filters').querySelectorAll('.chip'), function (c) {
+      var f = c.getAttribute('data-f');
+      c.textContent = labels[f] + ' ';
+      var sm = document.createElement('small');
+      sm.textContent = counts[f];
+      c.appendChild(sm);
+      c.setAttribute('aria-pressed', f === state.filter ? 'true' : 'false');
+    });
+
+    var rows = all.filter(function (x) {
+      if (state.filter === 'yes' && !x.attending) return false;
+      if (state.filter === 'no' && x.attending) return false;
+      if (state.filter === 'msg' && !x.message) return false;
+      if (q && (x.name + ' ' + x.message).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+
+    $('resp-count').textContent = rows.length === all.length ? '' : (rows.length + ' من ' + all.length);
+
+    var ul = $('list');
+    ul.textContent = '';
+    if (!rows.length) {
+      var li = document.createElement('li');
+      li.className = 'empty';
+      var o = document.createElement('div'); o.className = 'orn'; o.textContent = '❦';
+      var p = document.createElement('p');
+      p.textContent = all.length ? 'لا توجد نتائج مطابقة.' : 'لم يصل أي رد بعد. ستظهر الردود هنا فور إرسالها.';
+      li.appendChild(o); li.appendChild(p); ul.appendChild(li);
+      return;
+    }
+    rows.forEach(function (x) {
+      var li = document.createElement('li');
+      li.className = 'item';
+
+      var top = document.createElement('div');
+      top.className = 'item-top';
+      var who = document.createElement('span'); who.className = 'who'; who.textContent = x.name;
+      var tag = document.createElement('span'); tag.className = 'tag ' + (x.attending ? 'y' : 'n'); tag.textContent = x.attending ? 'سيحضر' : 'يعتذر';
+      var when = document.createElement('span'); when.className = 'when'; when.textContent = whenText(x.createdAt);
+      top.appendChild(who); top.appendChild(tag); top.appendChild(when);
+
+      var del = document.createElement('button');
+      del.className = 'del'; del.type = 'button'; del.title = 'حذف'; del.setAttribute('aria-label', 'حذف رد ' + x.name);
+      del.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6.5 7l1 13h9l1-13"/></svg>';
+      del.addEventListener('click', function () { askDelete(x); });
+
+      li.appendChild(top);
+      li.appendChild(del);
+      if (x.message) {
+        var m = document.createElement('p'); m.className = 'msg'; m.textContent = x.message; li.appendChild(m);
+      }
+      ul.appendChild(li);
+    });
+  }
+
+  /* ---------- delete ---------- */
+  function askDelete(x) {
+    state.pendingDelete = x;
+    $('dlg-text').textContent = 'سيتم حذف رد «' + x.name + '» نهائيًا، وسيتمكن صاحبه من إرسال رد جديد.';
+    var dlg = $('dlg');
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  $('dlg-cancel').addEventListener('click', function () { $('dlg').close(); state.pendingDelete = null; });
+  $('dlg-ok').addEventListener('click', function () {
+    var x = state.pendingDelete;
+    $('dlg').close();
+    if (!x) return;
+    call('delete', { method: 'DELETE', query: '&id=' + encodeURIComponent(x.id) }).then(function (r) {
+      if (r.status === 401) { showLogin(''); return; }
+      if (!r.ok) throw new Error('bad');
+      toast('تم حذف الرد');
+      load(true);
+    }).catch(function () { toast('تعذّر حذف الرد.'); });
+    state.pendingDelete = null;
+  });
+
+  /* ---------- events ---------- */
+  $('filters').addEventListener('click', function (e) {
+    var c = e.target.closest('.chip');
+    if (!c) return;
+    state.filter = c.getAttribute('data-f');
+    renderList();
+  });
+  $('search').addEventListener('input', function (e) { state.q = e.target.value; renderList(); });
+  $('btn-refresh').addEventListener('click', function () { load(false); });
+  $('btn-logout').addEventListener('click', function () {
+    call('logout', { method: 'POST', body: {} }).finally(function () {
+      state.loaded = false;
+      $('pw').value = '';
+      $('login-err').textContent = '';
+      showLogin('');
+    });
+  });
+
+  $('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pw = $('pw').value;
+    if (!pw) return;
+    var btn = $('login-btn');
+    btn.disabled = true;
+    $('login-err').textContent = '';
+    call('login', { method: 'POST', body: { password: pw } }).then(function (r) {
+      if (r.ok) { $('pw').value = ''; return load(false); }
+      var msg = 'تعذّر تسجيل الدخول.';
+      if (r.status === 401) msg = 'كلمة السر غير صحيحة.';
+      else if (r.status === 429) msg = 'محاولات كثيرة. انتظر ١٥ دقيقة ثم حاول مرة أخرى.';
+      else if (r.status === 503) msg = 'لم يتم ضبط كلمة سر اللوحة على الخادم بعد.';
+      $('login-err').textContent = msg;
+    }).catch(function () {
+      $('login-err').textContent = 'تعذّر الاتصال بالخادم.';
+    }).finally(function () { btn.disabled = false; });
+  });
+
+  document.addEventListener('visibilitychange', function () { if (!document.hidden && state.loaded) load(true); });
+
+  /* ---------- start ---------- */
+  load(true);
+})();
+</script>
+</body>
+</html>
