@@ -6321,7 +6321,7 @@
                     #rsvp-section {
                         position: relative;
                         background-color: #f4e0c8;
-                        padding: 72px 20px 88px;
+                        padding: 72px 20px 80px;
                         text-align: center;
                         direction: ltr;
                         overflow: hidden;
@@ -6338,6 +6338,10 @@
                     #rsvp-section::before { top: -90px; left: -90px; }
                     #rsvp-section::after { bottom: -100px; right: -100px; }
                     #rsvp-section * { box-sizing: border-box; }
+
+                    /* bilingual pair: English line with its Arabic translation right under it */
+                    #rsvp-section .ar { display: block; direction: rtl; font-family: 'Amiri', serif; }
+                    #rsvp-section .en { display: block; }
 
                     .rsvp-head {
                         position: relative;
@@ -6359,22 +6363,12 @@
                         font-size: 14px;
                         color: #af9b6a;
                     }
-                    .rsvp-title {
-                        font-family: 'Amiri', serif;
-                        font-weight: 700;
-                        font-size: 32px;
-                        line-height: 1.3;
-                        color: #4a3624;
-                        margin: 14px 0 8px;
-                    }
-                    .rsvp-lead {
-                        font-family: 'EB Garamond', serif;
-                        font-size: 17px;
-                        line-height: 1.6;
-                        color: #6b5231;
-                        max-width: 380px;
-                        margin: 0 auto 30px;
-                    }
+                    .rsvp-title { margin: 14px 0 12px; color: #4a3624; }
+                    .rsvp-title .en { font-family: 'Amiri', serif; font-weight: 700; font-size: 32px; line-height: 1.25; }
+                    .rsvp-title .ar { font-weight: 700; font-size: 22px; line-height: 1.5; color: #6b5231; margin-top: 2px; }
+                    .rsvp-lead { max-width: 380px; margin: 0 auto 30px; color: #6b5231; }
+                    .rsvp-lead .en { font-family: 'EB Garamond', serif; font-size: 17px; line-height: 1.55; }
+                    .rsvp-lead .ar { font-size: 16.5px; line-height: 1.7; color: #8a6f45; margin-top: 4px; }
 
                     .rsvp-card {
                         position: relative;
@@ -6385,54 +6379,66 @@
                         border-radius: 16px;
                         padding: 30px 26px;
                         box-shadow: 0 16px 36px rgba(74,54,28,0.1);
-                        text-align: left;
+                        text-align: center;
                     }
 
-                    .rsvp-field { margin-bottom: 18px; position: relative; }
+                    .rsvp-field { margin-bottom: 20px; position: relative; }
                     .rsvp-label, .rsvp-legend {
                         display: block;
+                        width: 100%;
+                        margin: 0 0 10px;
+                        padding: 0;
+                        text-align: center;
+                    }
+                    .rsvp-label .en, .rsvp-legend .en {
                         font-family: 'EB Garamond', serif;
                         font-weight: 600;
-                        letter-spacing: 0.4px;
-                        font-size: 13px;
+                        letter-spacing: 1.5px;
+                        font-size: 12.5px;
                         text-transform: uppercase;
                         color: #8a6f45;
-                        margin-bottom: 8px;
-                        padding: 0;
                     }
-                    .rsvp-label small { font-weight: 400; text-transform: none; color: #b9a77f; font-size: 12px; margin-left: 5px; letter-spacing: 0; }
+                    .rsvp-label .ar, .rsvp-legend .ar {
+                        font-weight: 700;
+                        font-size: 15.5px;
+                        line-height: 1.4;
+                        color: #4a3624;
+                        margin-top: 1px;
+                    }
+                    .rsvp-label small { font-weight: 400; text-transform: none; letter-spacing: 0; color: #b9a77f; font-size: 0.92em; }
                     .rsvp-input, .rsvp-textarea {
                         width: 100%;
-                        font-family: 'EB Garamond', serif;
+                        font-family: 'Amiri', 'EB Garamond', serif;
                         font-size: 17px;
                         color: #3f3122;
                         background: #fff;
                         border: 1px solid #e3d2ae;
                         border-radius: 10px;
                         padding: 12px 14px;
-                        direction: ltr;
-                        text-align: left;
+                        text-align: center;
                         outline: none;
                         transition: border-color 0.2s ease, box-shadow 0.2s ease;
                         -webkit-appearance: none;
                         appearance: none;
                     }
-                    .rsvp-textarea { min-height: 96px; resize: vertical; line-height: 1.6; }
+                    .rsvp-textarea { min-height: 100px; resize: vertical; line-height: 1.6; padding-bottom: 22px; }
                     .rsvp-input::placeholder, .rsvp-textarea::placeholder { color: #c3b38c; }
                     .rsvp-input:focus, .rsvp-textarea:focus {
                         border-color: #b08f52;
                         box-shadow: 0 0 0 3px rgba(201,173,122,0.2);
                     }
                     .rsvp-field.rsvp-invalid .rsvp-input,
-                    .rsvp-field.rsvp-invalid .rsvp-choices { border-color: #b4574a; }
+                    .rsvp-field.rsvp-invalid .rsvp-choice .box { border-color: #b4574a; }
                     .rsvp-field.rsvp-invalid .rsvp-input { box-shadow: 0 0 0 3px rgba(180,87,74,0.14); }
                     .rsvp-hint {
                         display: none;
                         font-family: 'EB Garamond', serif;
                         font-size: 13px;
+                        line-height: 1.4;
                         color: #a24a3d;
-                        margin-top: 6px;
+                        margin-top: 7px;
                     }
+                    .rsvp-hint .ar { font-size: 14px; }
                     .rsvp-field.rsvp-invalid .rsvp-hint { display: block; }
                     .rsvp-count {
                         position: absolute;
@@ -6446,8 +6452,8 @@
                         unicode-bidi: isolate;
                     }
 
-                    fieldset.rsvp-fieldset { border: 0; margin: 0 0 18px; padding: 0; min-width: 0; }
-                    .rsvp-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-radius: 10px; }
+                    fieldset.rsvp-fieldset { border: 0; margin: 0 0 20px; padding: 0; min-width: 0; }
+                    .rsvp-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
                     .rsvp-choice { position: relative; display: flex; cursor: pointer; }
                     .rsvp-choice input {
                         position: absolute;
@@ -6461,24 +6467,27 @@
                     .rsvp-choice .box {
                         flex: 1;
                         display: flex;
+                        flex-direction: column;
                         align-items: center;
                         justify-content: center;
-                        gap: 8px;
-                        min-height: 50px;
-                        padding: 10px 10px;
+                        gap: 2px;
+                        min-height: 84px;
+                        padding: 12px 8px;
                         text-align: center;
                         background: #fff;
                         border: 1px solid #e3d2ae;
-                        border-radius: 10px;
+                        border-radius: 12px;
                         transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
                     }
                     .rsvp-choice .ico {
-                        width: 18px; height: 18px;
+                        width: 20px; height: 20px;
                         flex: none;
                         color: #c3b38c;
+                        margin-bottom: 4px;
                         transition: color 0.2s ease;
                     }
-                    .rsvp-choice .t { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 14.5px; line-height: 1.3; color: #3f3122; }
+                    .rsvp-choice .en { font-family: 'EB Garamond', serif; font-weight: 600; font-size: 14.5px; line-height: 1.25; color: #3f3122; }
+                    .rsvp-choice .ar { font-weight: 700; font-size: 14px; line-height: 1.4; color: #8a6f45; }
                     .rsvp-choice input:checked + .box {
                         background: #f8ecd2;
                         border-color: #b08f52;
@@ -6502,29 +6511,34 @@
                         margin-bottom: 14px;
                     }
                     .rsvp-error.rsvp-show { display: block; }
+                    .rsvp-error .ar { font-size: 15px; }
 
                     .rsvp-submit {
                         width: 100%;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        gap: 10px;
-                        font-family: 'EB Garamond', serif;
-                        font-weight: 600;
-                        letter-spacing: 1px;
-                        text-transform: uppercase;
-                        font-size: 14px;
+                        gap: 12px;
                         color: #fffaf2;
                         background: #4a3624;
                         border: 0;
                         border-radius: 10px;
-                        padding: 14px 20px;
+                        padding: 11px 20px 12px;
                         margin-top: 4px;
                         cursor: pointer;
                         box-shadow: 0 10px 22px rgba(74,54,36,0.22);
                         transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
                         -webkit-tap-highlight-color: transparent;
                     }
+                    .rsvp-submit-label .en {
+                        font-family: 'EB Garamond', serif;
+                        font-weight: 600;
+                        letter-spacing: 1.5px;
+                        text-transform: uppercase;
+                        font-size: 14px;
+                        line-height: 1.3;
+                    }
+                    .rsvp-submit-label .ar { font-weight: 700; font-size: 15px; line-height: 1.4; color: #ead9b8; }
                     .rsvp-submit:hover { background: #5a432d; }
                     .rsvp-submit:active { transform: scale(0.985); }
                     .rsvp-submit:focus-visible { outline: 3px solid rgba(176,143,82,0.7); outline-offset: 3px; }
@@ -6557,39 +6571,76 @@
                     .rsvp-done.rsvp-fresh .rsvp-seal path { stroke-dashoffset: 40; animation: rsvpDraw 0.7s ease 0.35s forwards; }
                     @keyframes rsvpPop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
                     @keyframes rsvpDraw { to { stroke-dashoffset: 0; } }
-                    .rsvp-done-title {
-                        font-family: 'Amiri', serif;
-                        font-weight: 700;
-                        font-size: 23px;
-                        color: #4a3624;
-                        margin: 0 0 8px;
-                        line-height: 1.35;
-                    }
-                    .rsvp-done-text {
-                        font-family: 'EB Garamond', serif;
-                        font-size: 16px;
-                        line-height: 1.6;
-                        color: #6b5231;
-                        margin: 0 auto;
-                        max-width: 320px;
-                    }
+                    .rsvp-done-title { margin: 0 0 10px; color: #4a3624; }
+                    .rsvp-done-title .en { font-family: 'Amiri', serif; font-weight: 700; font-size: 23px; line-height: 1.35; }
+                    .rsvp-done-title .ar { font-weight: 700; font-size: 19px; line-height: 1.5; color: #6b5231; }
+                    .rsvp-done-text { margin: 0 auto; max-width: 320px; color: #6b5231; }
+                    .rsvp-done-text .en { font-family: 'EB Garamond', serif; font-size: 16px; line-height: 1.55; }
+                    .rsvp-done-text .ar { font-size: 16px; line-height: 1.7; color: #8a6f45; margin-top: 4px; }
                     .rsvp-done-flourish { color: #c9ad7a; font-size: 18px; margin: 14px 0 10px; }
-                    .rsvp-done-note {
-                        font-family: 'EB Garamond', serif;
-                        font-size: 12.5px;
-                        color: #b9a77f;
-                        margin: 0;
+                    .rsvp-done-note { margin: 0; color: #b9a77f; }
+                    .rsvp-done-note .en { font-family: 'EB Garamond', serif; font-size: 12.5px; line-height: 1.4; }
+                    .rsvp-done-note .ar { font-size: 13px; line-height: 1.6; }
+
+                    /* notes under the form */
+                    .rsvp-notes {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 12px;
+                        max-width: 440px;
+                        margin: 26px auto 0;
+                        opacity: 0;
+                        transform: translateY(14px);
+                        transition: opacity 0.9s ease 0.3s, transform 0.9s ease 0.3s;
                     }
+                    #rsvp-section.rsvp-inview .rsvp-notes { opacity: 1; transform: translateY(0); }
+                    .rsvp-note {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        padding: 18px 10px 16px;
+                        background: rgba(255,250,242,0.6);
+                        border: 1px solid rgba(190,160,108,0.35);
+                        border-radius: 14px;
+                    }
+                    .rsvp-note-ico {
+                        width: 44px; height: 44px;
+                        border-radius: 50%;
+                        display: flex; align-items: center; justify-content: center;
+                        background: #fffaf2;
+                        border: 1px solid #d9c399;
+                        color: #8a6f45;
+                        margin-bottom: 10px;
+                        box-shadow: 0 6px 14px rgba(74,54,28,0.08);
+                    }
+                    .rsvp-note-ico svg { width: 22px; height: 22px; display: block; }
+                    .rsvp-note .en {
+                        font-family: 'EB Garamond', serif;
+                        font-weight: 600;
+                        font-size: 11.5px;
+                        letter-spacing: 1.5px;
+                        text-transform: uppercase;
+                        line-height: 1.35;
+                        color: #af9b6a;
+                    }
+                    .rsvp-note .ar { font-weight: 700; font-size: 17px; line-height: 1.5; color: #4a3624; margin-top: 3px; }
 
                     @media screen and (max-width: 479px) {
-                        #rsvp-section { padding: 56px 14px 72px; }
-                        .rsvp-title { font-size: 27px; }
-                        .rsvp-lead { font-size: 15.5px; }
-                        .rsvp-card { padding: 24px 18px; }
-                        .rsvp-choice .t { font-size: 13.5px; }
+                        #rsvp-section { padding: 56px 14px 64px; }
+                        .rsvp-title .en { font-size: 27px; }
+                        .rsvp-title .ar { font-size: 19px; }
+                        .rsvp-lead .en { font-size: 15.5px; }
+                        .rsvp-lead .ar { font-size: 15px; }
+                        .rsvp-card { padding: 24px 16px; }
+                        .rsvp-choice .en { font-size: 13.5px; }
+                        .rsvp-choice .ar { font-size: 13.5px; }
+                        .rsvp-notes { gap: 10px; margin-top: 22px; }
+                        .rsvp-note { padding: 16px 8px 14px; }
+                        .rsvp-note .en { font-size: 10.5px; letter-spacing: 1.2px; }
+                        .rsvp-note .ar { font-size: 15.5px; }
                     }
                     @media (prefers-reduced-motion: reduce) {
-                        .rsvp-head, .rsvp-choice .box, .rsvp-submit { transition: none; }
+                        .rsvp-head, .rsvp-notes, .rsvp-choice .box, .rsvp-submit { transition: none; }
                         .rsvp-done.rsvp-fresh .rsvp-seal, .rsvp-done.rsvp-fresh .rsvp-seal path { animation: none; stroke-dashoffset: 0; }
                         .rsvp-spin { animation-duration: 2s; }
                     }
@@ -6601,42 +6652,65 @@
                         <span class="word">RSVP</span>
                         <span class="line"></span>
                     </div>
-                    <div class="rsvp-title">Will You Join Us?</div>
-                    <p class="rsvp-lead">We'd love to celebrate with you — please let us know if you can make it.</p>
+                    <div class="rsvp-title">
+                        <span class="en">Will You Join Us?</span>
+                        <span class="ar">هل ستشاركنا فرحتنا؟</span>
+                    </div>
+                    <div class="rsvp-lead">
+                        <span class="en">We'd love to celebrate with you — please let us know if you can make it.</span>
+                        <span class="ar">يسعدنا أن نحتفل معكم، فضلًا أخبرونا بحضوركم.</span>
+                    </div>
                 </div>
 
                 <div class="rsvp-card" id="rsvp-card">
                     <form id="rsvp-form" novalidate autocomplete="on">
                         <div class="rsvp-field" data-field="name">
-                            <label class="rsvp-label" for="rsvp-name">Your Name</label>
-                            <input class="rsvp-input" id="rsvp-name" name="name" type="text" maxlength="80" autocomplete="name" placeholder="Full name" enterkeyhint="next">
-                            <div class="rsvp-hint">Please enter your name.</div>
+                            <label class="rsvp-label" for="rsvp-name">
+                                <span class="en">Your Name</span>
+                                <span class="ar">الاسم</span>
+                            </label>
+                            <input class="rsvp-input" id="rsvp-name" name="name" type="text" dir="auto" maxlength="80" autocomplete="name" placeholder="Full name · الاسم بالكامل" enterkeyhint="next">
+                            <div class="rsvp-hint">
+                                <span class="en">Please enter your name.</span>
+                                <span class="ar">من فضلك اكتب اسمك.</span>
+                            </div>
                         </div>
 
                         <fieldset class="rsvp-fieldset rsvp-field" data-field="attending">
-                            <legend class="rsvp-legend">Will You Attend?</legend>
+                            <legend class="rsvp-legend">
+                                <span class="en">Will You Attend?</span>
+                                <span class="ar">هل ستحضر؟</span>
+                            </legend>
                             <div class="rsvp-choices">
                                 <label class="rsvp-choice">
                                     <input type="radio" name="attending" value="yes">
                                     <span class="box">
                                         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg>
-                                        <span class="t">Joyfully Accept</span>
+                                        <span class="en">Joyfully Accept</span>
+                                        <span class="ar">بكل سرور</span>
                                     </span>
                                 </label>
                                 <label class="rsvp-choice">
                                     <input type="radio" name="attending" value="no">
                                     <span class="box">
                                         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
-                                        <span class="t">Regretfully Decline</span>
+                                        <span class="en">Regretfully Decline</span>
+                                        <span class="ar">أعتذر عن الحضور</span>
                                     </span>
                                 </label>
                             </div>
-                            <div class="rsvp-hint">Please choose one option.</div>
+                            <div class="rsvp-hint">
+                                <span class="en">Please choose one option.</span>
+                                <span class="ar">من فضلك اختر أحد الخيارين.</span>
+                            </div>
                         </fieldset>
 
                         <div class="rsvp-field" data-field="message">
-                            <label class="rsvp-label" for="rsvp-message">Message <small>(optional)</small></label>
-                            <textarea class="rsvp-textarea" id="rsvp-message" name="message" maxlength="500" placeholder="Leave a note for the couple"></textarea>
+                            <label class="rsvp-label" for="rsvp-message">
+                                <span class="en">Message <small>(optional)</small></span>
+                                <span class="ar">رسالة للعروسين <small>(اختياري)</small></span>
+                            </label>
+                            <textarea class="rsvp-textarea" id="rsvp-message" name="message" dir="auto" maxlength="500" placeholder="Leave a note for the couple&#10;اترك رسالة للعروسين"></textarea>
                             <span class="rsvp-count" id="rsvp-count" aria-hidden="true">0 / 500</span>
                         </div>
 
@@ -6648,7 +6722,10 @@
 
                         <button type="submit" class="rsvp-submit" id="rsvp-submit">
                             <span class="rsvp-spin" aria-hidden="true"></span>
-                            <span class="rsvp-submit-label">Send RSVP</span>
+                            <span class="rsvp-submit-label">
+                                <span class="en">Send RSVP</span>
+                                <span class="ar">إرسال الرد</span>
+                            </span>
                         </button>
                     </form>
 
@@ -6656,10 +6733,36 @@
                         <div class="rsvp-seal">
                             <svg viewBox="0 0 24 24" fill="none" stroke="#6b5231" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.6l4.4 4.4L19 7.4"/></svg>
                         </div>
-                        <h3 class="rsvp-done-title" id="rsvp-done-title"></h3>
-                        <p class="rsvp-done-text" id="rsvp-done-text"></p>
+                        <h3 class="rsvp-done-title">
+                            <span class="en" id="rsvp-done-title"></span>
+                            <span class="ar" id="rsvp-done-title-ar"></span>
+                        </h3>
+                        <div class="rsvp-done-text">
+                            <span class="en" id="rsvp-done-text"></span>
+                            <span class="ar" id="rsvp-done-text-ar"></span>
+                        </div>
                         <div class="rsvp-done-flourish">❦</div>
-                        <p class="rsvp-done-note">Your response has been recorded and can't be resubmitted from this device.</p>
+                        <div class="rsvp-done-note">
+                            <span class="en">Your response has been recorded and can't be resubmitted from this device.</span>
+                            <span class="ar">تم تسجيل ردّك، ولا يمكن إرسال رد آخر من هذا الجهاز.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rsvp-notes">
+                    <div class="rsvp-note">
+                        <span class="rsvp-note-ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5L12 3.5l8.5 7"/><path d="M5.5 9v11h13V9"/><path d="M12 17.2s-3-1.9-3-3.9a1.6 1.6 0 0 1 3-.8 1.6 1.6 0 0 1 3 .8c0 2-3 3.9-3 3.9z"/></svg>
+                        </span>
+                        <span class="en">Kindly, adults only</span>
+                        <span class="ar">جنة الأطفال منازلهم</span>
+                    </div>
+                    <div class="rsvp-note">
+                        <span class="rsvp-note-ico" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
+                        </span>
+                        <span class="en">Kindly confirm your attendance</span>
+                        <span class="ar">يُرجى تأكيد الحضور</span>
                     </div>
                 </div>
 
@@ -6685,6 +6788,8 @@
                         var done = document.getElementById('rsvp-done');
                         var errBox = document.getElementById('rsvp-error');
                         var btn = document.getElementById('rsvp-submit');
+                        var btnEn = btn.querySelector('.rsvp-submit-label .en');
+                        var btnAr = btn.querySelector('.rsvp-submit-label .ar');
                         var nameInput = document.getElementById('rsvp-name');
                         var msgInput = document.getElementById('rsvp-message');
                         var counter = document.getElementById('rsvp-count');
@@ -6694,23 +6799,35 @@
                         function lsGet() { try { return JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) { return null; } }
                         function lsSet(v) { try { localStorage.setItem(LS_KEY, JSON.stringify(v)); } catch (e) {} }
 
-                        function showError(msg) {
-                            errBox.textContent = msg || '';
-                            errBox.classList.toggle('rsvp-show', !!msg);
+                        function setPair(el, en, ar) {
+                            el.textContent = '';
+                            var a = document.createElement('span'); a.className = 'en'; a.textContent = en;
+                            var b = document.createElement('span'); b.className = 'ar'; b.textContent = ar;
+                            el.appendChild(a); el.appendChild(b);
+                        }
+                        function showError(en, ar) {
+                            if (en) { setPair(errBox, en, ar || ''); } else { errBox.textContent = ''; }
+                            errBox.classList.toggle('rsvp-show', !!en);
                         }
 
                         function showDone(data, fresh) {
                             var nm = (data && data.name ? String(data.name) : '').trim();
                             var first = nm ? nm.split(/\s+/)[0] : '';
                             var yes = !!(data && data.attending);
-                            var title = document.getElementById('rsvp-done-title');
-                            var text = document.getElementById('rsvp-done-text');
+                            var tEn = document.getElementById('rsvp-done-title');
+                            var tAr = document.getElementById('rsvp-done-title-ar');
+                            var xEn = document.getElementById('rsvp-done-text');
+                            var xAr = document.getElementById('rsvp-done-text-ar');
                             if (yes) {
-                                title.textContent = first ? ('Thank you, ' + first + '!') : 'Thank you!';
-                                text.textContent = "Your RSVP is confirmed. We can't wait to celebrate with you!";
+                                tEn.textContent = first ? ('Thank you, ' + first + '!') : 'Thank you!';
+                                tAr.textContent = first ? ('شكرًا لك يا ' + first) : 'شكرًا لك';
+                                xEn.textContent = "Your RSVP is confirmed. We can't wait to celebrate with you!";
+                                xAr.textContent = 'تم تأكيد حضورك، ونتطلع لرؤيتك والاحتفال معك.';
                             } else {
-                                title.textContent = first ? ('Thank you, ' + first + '.') : 'Thank you.';
-                                text.textContent = "We appreciate your response. You'll be missed on our special day.";
+                                tEn.textContent = first ? ('Thank you, ' + first + '.') : 'Thank you.';
+                                tAr.textContent = first ? ('شكرًا لك يا ' + first) : 'شكرًا لك';
+                                xEn.textContent = "We appreciate your response. You'll be missed on our special day.";
+                                xAr.textContent = 'نقدّر ردّك، وسنفتقد وجودك في يومنا المميز.';
                             }
                             form.hidden = true;
                             done.hidden = false;
@@ -6773,13 +6890,15 @@
                             sending = true;
                             btn.disabled = true;
                             btn.classList.add('rsvp-busy');
-                            btn.querySelector('.rsvp-submit-label').textContent = 'Sending...';
+                            btnEn.textContent = 'Sending...';
+                            btnAr.textContent = 'جارٍ الإرسال...';
 
                             var finish = function() {
                                 sending = false;
                                 btn.disabled = false;
                                 btn.classList.remove('rsvp-busy');
-                                btn.querySelector('.rsvp-submit-label').textContent = 'Send RSVP';
+                                btnEn.textContent = 'Send RSVP';
+                                btnAr.textContent = 'إرسال الرد';
                             };
 
                             fetch(API, {
@@ -6798,17 +6917,17 @@
                                     lsSet({ done: true, name: d.name || payload.name, attending: typeof d.attending === 'boolean' ? d.attending : payload.attending });
                                     showDone({ name: d.name || payload.name, attending: typeof d.attending === 'boolean' ? d.attending : payload.attending }, false);
                                 } else if (res.status === 400 && res.data && res.data.message) {
-                                    showError(res.data.message);
+                                    showError(res.data.message, res.data.messageAr);
                                     finish();
                                 } else if (res.status === 429) {
-                                    showError('Too many attempts. Please wait a moment and try again.');
+                                    showError('Too many attempts. Please wait a moment and try again.', 'محاولات كثيرة، من فضلك انتظر قليلًا ثم حاول مرة أخرى.');
                                     finish();
                                 } else {
-                                    showError("Couldn't send your RSVP right now. Please try again shortly.");
+                                    showError("Couldn't send your RSVP right now. Please try again shortly.", 'تعذّر إرسال ردّك الآن، من فضلك حاول مرة أخرى بعد قليل.');
                                     finish();
                                 }
                             }).catch(function() {
-                                showError('Connection error. Please check your internet and try again.');
+                                showError('Connection error. Please check your internet and try again.', 'تعذّر الاتصال، تأكد من الإنترنت ثم أعد المحاولة.');
                                 finish();
                             });
                         });

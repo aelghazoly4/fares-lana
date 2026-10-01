@@ -43,10 +43,10 @@ module.exports = async (req, res) => {
     const name = cleanText(body.name, 80, false);
     const message = cleanText(body.message, 500, true);
     if (name.length < 2) {
-      return send(res, 400, { error: 'invalid_name', message: 'Please enter your name.' });
+      return send(res, 400, { error: 'invalid_name', message: 'Please enter your name.', messageAr: 'من فضلك اكتب اسمك.' });
     }
     if (typeof body.attending !== 'boolean') {
-      return send(res, 400, { error: 'invalid_attending', message: 'Please let us know if you can attend.' });
+      return send(res, 400, { error: 'invalid_attending', message: 'Please let us know if you can attend.', messageAr: 'من فضلك اختر هل ستحضر أم لا.' });
     }
 
     const db = await getDb();
