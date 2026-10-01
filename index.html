@@ -3588,6 +3588,12 @@
                         color: #af9b6a;
                         margin-bottom: 8px;
                     }
+                    .fb-card .label .kid {
+                        font-family: 'Amiri', serif;
+                        font-weight: 700;
+                        letter-spacing: 0;
+                        color: #8a6f45;
+                    }
                     .fb-card .name {
                         font-family: 'Amiri', serif;
                         font-weight: 700;
@@ -3630,11 +3636,11 @@
 
                 <div class="fb-cards">
                     <div class="fb-card right">
-                        <div class="label">والد العريس</div>
+                        <div class="label">والد العريس <span class="kid">فارس</span></div>
                         <div class="name">السيد سامر الذهبي</div>
                     </div>
                     <div class="fb-card left">
-                        <div class="label">والد العروسة</div>
+                        <div class="label">والد العروسة <span class="kid">لانا</span></div>
                         <div class="name">الدكتور مازن شعار</div>
                     </div>
                 </div>
@@ -6168,6 +6174,54 @@
                         .loc-hall-name { font-size: 26px; }
                     }
 
+                    .loc-split {
+                        display: flex;
+                        justify-content: center;
+                        align-items: stretch;
+                        max-width: 460px;
+                        margin: 24px auto 6px;
+                        direction: ltr;
+                        opacity: 0;
+                        transform: translateY(16px);
+                        transition: opacity 1s ease 0.1s, transform 1s ease 0.1s;
+                    }
+                    #loc-section.loc-inview .loc-split { opacity: 1; transform: translateY(0); }
+                    .loc-split-col { flex: 1 1 0; padding: 4px 14px; }
+                    .loc-split-div {
+                        width: 1px;
+                        flex: none;
+                        background: linear-gradient(180deg, transparent, #c9ad7a, transparent);
+                    }
+                    .loc-split-who {
+                        font-family: 'EB Garamond', serif;
+                        font-size: 13px;
+                        letter-spacing: 3px;
+                        padding-left: 3px;
+                        text-transform: uppercase;
+                        color: #af9b6a;
+                        margin-bottom: 8px;
+                    }
+                    .loc-split-where {
+                        font-family: 'Amiri', serif;
+                        font-weight: 700;
+                        font-size: 19px;
+                        line-height: 1.3;
+                        color: #4a3624;
+                    }
+                    .loc-split-type {
+                        font-family: 'EB Garamond', serif;
+                        font-style: italic;
+                        font-size: 14px;
+                        color: #8a6f45;
+                        margin-top: 4px;
+                    }
+                    @media screen and (max-width: 479px) {
+                        .loc-split-col { padding: 4px 8px; }
+                        .loc-split-who { font-size: 11.5px; letter-spacing: 2.5px; }
+                        .loc-split-where { font-size: 16.5px; }
+                        .loc-split-type { font-size: 12.5px; }
+                    }
+
                     .loc-map-wrap {
                         max-width: 520px;
                         margin: 0 auto;
@@ -6208,6 +6262,20 @@
                     <span class="line"></span>
                     <span class="word">THE VENUE</span>
                     <span class="line"></span>
+                </div>
+
+                <div class="loc-split">
+                    <div class="loc-split-col">
+                        <div class="loc-split-who">Males</div>
+                        <div class="loc-split-where">Beach Side Park</div>
+                        <div class="loc-split-type">Outdoors</div>
+                    </div>
+                    <span class="loc-split-div" aria-hidden="true"></span>
+                    <div class="loc-split-col">
+                        <div class="loc-split-who">Females</div>
+                        <div class="loc-split-where">Hotel Ballroom</div>
+                        <div class="loc-split-type">Indoors</div>
+                    </div>
                 </div>
                 <!-- <div class="loc-title">في انتظاركم هناك</div> -->
 
