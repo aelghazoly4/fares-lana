@@ -2969,10 +2969,32 @@
                         transition: opacity 1s ease 1.05s, transform 1s ease 1.05s;
                     }
                     #std-section.std-inview .std-sub { opacity: 1; transform: translateY(0); }
+                    .std-time {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 12px;
+                        margin-top: 10px;
+                        font-family: 'Amiri', serif;
+                        font-size: 17px;
+                        color: #8a6f45;
+                        direction: rtl;
+                        opacity: 0;
+                        transform: translateY(12px);
+                        transition: opacity 1s ease 1.3s, transform 1s ease 1.3s;
+                    }
+                    .std-time .line { width: 28px; height: 1px; background: #c9ad7a; flex: none; }
+                    .std-time b { font-weight: 700; color: #6b5738; }
+                    #std-section.std-inview .std-time { opacity: 1; transform: translateY(0); }
 
                     @media screen and (max-width: 479px) {
                         .std-calendar-wrap { max-width: 320px; margin: 26px auto 22px; }
                         .std-sub { font-size: 16px; }
+                        .std-time { font-size: 14.5px; gap: 10px; margin-top: 8px; }
+                        .std-time .line { width: 20px; }
+                    }
+                    @media (prefers-reduced-motion: reduce) {
+                        .std-time { transition: none; }
                     }
 
                     .std-cal-card {
@@ -3124,6 +3146,7 @@
                 </div>
 
                 <div class="std-sub">الأحد ١ / ١١ / ٢٠٢٦</div>
+                <div class="std-time"><span class="line"></span><span>بداية الحفل الساعة <b>٦:٣٠ مساءً</b></span><span class="line"></span></div>
 
                 <script>
                     (function() {
